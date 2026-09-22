@@ -5,51 +5,153 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Writes</title>
 <style>
-  body {
-    margin: 24px 16px 48px;
-    font: 14px/1.4 Helvetica, Arial, sans-serif;
-    color: #111;
-    background: #fff;
+  :root {
+    --ink: #1a1916;
+    --mute: #6f6a62;
+    --line: #e4e0d8;
+    --paper: #f3f1ec;
+    --card: #fffcf7;
+    --neg: #9a3b2f;
   }
-  nav { margin: 0 0 16px; font-size: 13px; }
-  nav a { color: #111; text-decoration: none; margin-right: 12px; }
-  nav a.on { font-weight: 700; }
-  h1 { font-size: 16px; font-weight: 700; margin: 0 0 4px; }
-  h2 { font-size: 14px; font-weight: 700; margin: 20px 0 8px; }
-  h3 { font-size: 13px; font-weight: 700; margin: 16px 0 6px; }
-  p { margin: 0 0 12px; color: #555; font-size: 13px; }
-  .write p { color: #111; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font: 15px/1.45 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 0 0 28px;
+  }
+  .brand {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+  nav {
+    display: flex;
+    padding: 3px;
+    background: #e8e4dc;
+    border-radius: 999px;
+  }
+  nav a {
+    color: var(--mute);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+  nav a.on { color: var(--ink); background: var(--card); }
+  .head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 0 18px;
+  }
+  h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.03em; margin: 0; }
+  h2 { font-size: 15px; font-weight: 700; margin: 28px 0 10px; }
+  h3 { font-size: 13px; font-weight: 700; margin: 20px 0 8px; }
+  .asof { margin: 0; color: var(--mute); font-size: 12px; }
+  .marks {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0 0 22px;
+  }
+  .mark {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px 11px;
+  }
+  .mark .k {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin: 0 0 4px;
+  }
+  .mark .v { font-size: 20px; font-weight: 600; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+  .sheet {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow-x: auto;
+  }
+  p { margin: 0 0 12px; color: var(--mute); font-size: 14px; }
+  .memo p { color: var(--ink); }
   ul { margin: 0 0 12px 18px; padding: 0; }
-  li { margin: 0 0 4px; }
-  code { font-family: Helvetica, Arial, sans-serif; }
+  li { margin: 0 0 6px; }
+  code {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.92em;
+    background: #eeeae3;
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
   table {
     border-collapse: collapse;
     font-variant-numeric: tabular-nums;
     width: 100%;
-    max-width: 960px;
-    margin: 0 0 16px;
   }
   th, td {
     text-align: right;
-    padding: 5px 8px 5px 0;
-    border-bottom: 1px solid #ddd;
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--line);
     white-space: nowrap;
   }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody tr:first-child td { font-weight: 600; }
   th.left, td.left { text-align: left; }
-  th { font-weight: 600; color: #555; }
-  .na { color: #999; }
-  .write table th, .write table td {
+  th {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mute);
+    background: #f7f4ee;
+  }
+  .na { color: #b3aea5; font-weight: 400; }
+  .neg { color: var(--neg); }
+  .memo { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 28px 32px 32px; }
+  .memo + .memo { margin-top: 20px; }
+  .memo h1 { font-size: 22px; margin: 0 0 12px; }
+  .memo table { margin: 0 0 16px; font-size: 14px; }
+  .memo table th, .memo table td {
     text-align: left;
     white-space: normal;
     vertical-align: top;
+    text-transform: none;
+    letter-spacing: 0;
   }
-  hr { border: 0; border-top: 1px solid #ddd; margin: 20px 0; }
+  .memo table thead:has(th:empty):not(:has(th:not(:empty))) { display: none; }
+  .memo tbody tr:first-child td { font-weight: 400; }
+  .memo td:first-child { color: var(--mute); width: 28%; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 22px 0; }
+  @media (max-width: 720px) {
+    .marks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    h1 { font-size: 22px; }
+    .memo { padding: 20px; }
+  }
 </style>
 </head>
-<body class="write">
+<body>
+<div class="wrap">
 
-<nav><a class="" href="index.html">Tape</a><a class="on" href="writes.html">Writes</a></nav>
-<div class="write"><h1>Monthly write — 2026-09</h1>
+<header><p class="brand">2800</p><nav><a class="" href="index.html">Tape</a><a class="on" href="writes.html">Writes</a></nav></header>
+<article class="memo"><h1>Monthly write — 2026-09</h1>
 <p>Stand-up month: the Jun-2026 HSI review went <strong>effective 7 Sep 2026</strong> before this repo had a tape. File this by <strong>7 Oct 2026</strong> even if the CLI is not up. Thin is fine.</p>
 <table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td><strong>Month</strong></td><td>2026-09 (HK sessions)</td></tr><tr><td><strong>Written</strong></td><td></td></tr><tr><td><strong>Sessions / missing</strong></td><td>0 printed by CLI · missing: all, unless hand-saved dates listed below</td></tr><tr><td><strong>Tape status</strong></td><td><code>hand</code></td></tr><tr><td><strong>Hypothetical book</strong></td><td>not started — nothing traded</td></tr></tbody></table>
 <hr>
@@ -79,6 +181,7 @@
 <ul><li>Fields still <code>NA</code> this month: almost everything until a hand-saved day exists</li><li>Something I almost imputed and did not:</li><li>Process miss:</li></ul>
 <hr>
 <h2>8. Next month watch</h2>
-<p>31 Oct gate. Keep a CSV row even if it is four numbers. Oct write should be the first month that can show a premium distribution if the row prints.</p></div>
+<p>31 Oct gate. Keep a CSV row even if it is four numbers. Oct write should be the first month that can show a premium distribution if the row prints.</p></article>
+</div>
 </body>
 </html>
