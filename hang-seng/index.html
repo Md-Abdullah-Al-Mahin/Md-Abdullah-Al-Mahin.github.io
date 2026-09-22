@@ -125,25 +125,21 @@
   }
   .na { color: #b3aea5; font-weight: 400; }
   .neg { color: var(--neg); }
-  .memo { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 28px 32px 32px; }
-  .memo + .memo { margin-top: 20px; }
-  .memo h1 { font-size: 22px; margin: 0 0 12px; }
-  .memo table { margin: 0 0 16px; font-size: 14px; }
-  .memo table th, .memo table td {
-    text-align: left;
-    white-space: normal;
-    vertical-align: top;
-    text-transform: none;
-    letter-spacing: 0;
+  .pdfs { list-style: none; margin: 0; padding: 0; }
+  .pdfs li + li { margin-top: 10px; }
+  .pdfs a {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
   }
-  .memo table thead:has(th:empty):not(:has(th:not(:empty))) { display: none; }
-  .memo tbody tr:first-child td { font-weight: 400; }
-  .memo td:first-child { color: var(--mute); width: 28%; }
-  hr { border: 0; border-top: 1px solid var(--line); margin: 22px 0; }
   @media (max-width: 720px) {
     .marks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     h1 { font-size: 22px; }
-    .memo { padding: 20px; }
   }
 </style>
 </head>
@@ -151,7 +147,7 @@
 <div class="wrap">
 
 <header><p class="brand">2800</p><nav><a class="on" href="index.html">Tape</a><a class="" href="writes.html">Writes</a></nav></header>
-<div class="head"><h1>2026-09-21</h1><p class="asof">Tue 22 Sep 2026, 13:10 HKT</p></div>
+<div class="head"><h1>2026-09-21</h1><p class="asof">Tue 22 Sep 2026, 13:13 HKT</p></div>
 <div class="marks">
   <div class="mark"><span class="k">2800</span><span class="v ">25.66</span></div>
   <div class="mark"><span class="k">NAV</span><span class="v ">25.688</span></div>
