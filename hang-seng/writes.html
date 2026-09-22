@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Writes</title>
+<style>
+  body {
+    margin: 24px 16px 48px;
+    font: 14px/1.4 Helvetica, Arial, sans-serif;
+    color: #111;
+    background: #fff;
+  }
+  nav { margin: 0 0 16px; font-size: 13px; }
+  nav a { color: #111; text-decoration: none; margin-right: 12px; }
+  nav a.on { font-weight: 700; }
+  h1 { font-size: 16px; font-weight: 700; margin: 0 0 4px; }
+  h2 { font-size: 14px; font-weight: 700; margin: 20px 0 8px; }
+  h3 { font-size: 13px; font-weight: 700; margin: 16px 0 6px; }
+  p { margin: 0 0 12px; color: #555; font-size: 13px; }
+  .write p { color: #111; }
+  ul { margin: 0 0 12px 18px; padding: 0; }
+  li { margin: 0 0 4px; }
+  code { font-family: Helvetica, Arial, sans-serif; }
+  table {
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 0 16px;
+  }
+  th, td {
+    text-align: right;
+    padding: 5px 8px 5px 0;
+    border-bottom: 1px solid #ddd;
+    white-space: nowrap;
+  }
+  th.left, td.left { text-align: left; }
+  th { font-weight: 600; color: #555; }
+  .na { color: #999; }
+  .write table th, .write table td {
+    text-align: left;
+    white-space: normal;
+    vertical-align: top;
+  }
+  hr { border: 0; border-top: 1px solid #ddd; margin: 20px 0; }
+</style>
+</head>
+<body class="write">
+
+<nav><a class="" href="index.html">Tape</a><a class="on" href="writes.html">Writes</a></nav>
+<div class="write"><h1>Monthly write — 2026-09</h1>
+<p>Stand-up month: the Jun-2026 HSI review went <strong>effective 7 Sep 2026</strong> before this repo had a tape. File this by <strong>7 Oct 2026</strong> even if the CLI is not up. Thin is fine.</p>
+<table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td><strong>Month</strong></td><td>2026-09 (HK sessions)</td></tr><tr><td><strong>Written</strong></td><td></td></tr><tr><td><strong>Sessions / missing</strong></td><td>0 printed by CLI · missing: all, unless hand-saved dates listed below</td></tr><tr><td><strong>Tape status</strong></td><td><code>hand</code></td></tr><tr><td><strong>Hypothetical book</strong></td><td>not started — nothing traded</td></tr></tbody></table>
+<hr>
+<h2>1. Tape</h2>
+<table><thead><tr><th>Object</th><th>Source this month</th><th>Holes</th></tr></thead><tbody><tr><td>2800 last</td><td></td><td></td></tr><tr><td>Official NAV / adj NAV</td><td></td><td></td></tr><tr><td>HSIF front / next</td><td></td><td></td></tr><tr><td><code>r</code> (term-matched)</td><td></td><td></td></tr><tr><td>HSI cash</td><td></td><td></td></tr></tbody></table>
+<p>Hand-saved days (if any): rows in <code>data/book/YYYY-MM.csv</code> …</p>
+<hr>
+<h2>2. Three gaps</h2>
+<p>All <code>NA</code> until at least one dated NAV + 2800 last exist. Do not fill from Yahoo NAV.</p>
+<table><thead><tr><th></th><th>Median</th><th>Min</th><th>Max</th><th>Notes</th></tr></thead><tbody><tr><td>Premium bp</td><td>NA</td><td>NA</td><td>NA</td><td></td></tr><tr><td>Tracking bp</td><td>NA</td><td>NA</td><td>NA</td><td></td></tr><tr><td>Quoted basis pts</td><td>NA</td><td>NA</td><td>NA</td><td></td></tr><tr><td>Implied financing vs HIBOR</td><td>NA</td><td>NA</td><td>NA</td><td></td></tr></tbody></table>
+<hr>
+<h2>3. Roll</h2>
+<p>Confirm Sep 2026 LTD from HKEX (second-last business day of the month). Roll = 3 sessions before LTD.</p>
+<table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>Front expiry / next</td><td>SEP-26 LTD <strong>2026-09-29</strong> / OCT-26 LTD <strong>2026-10-29</strong></td></tr><tr><td>LTD / roll day</td><td>LTD 29 Sep · roll <strong>24 Sep</strong> (3 sessions before; 26 Sep is a Saturday holiday)</td></tr><tr><td><code>sync</code> on roll day</td><td></td></tr><tr><td>Roll cost vs fair</td><td>NA</td></tr></tbody></table>
+<hr>
+<h2>4. Calendar (this month)</h2>
+<ul><li>HSI <strong>effective 7 Sep 2026</strong> (PR 21 Aug; adds 1347, 2338; 93→95). Live call was already gone; this is the replay fixture, not a prediction.</li><li>HSIF Sep roll / LTD (LTD 29 Sep, roll 24 Sep; gazette calendar, not an HKEX print)</li><li>Month-end</li><li>Ex-div / HSIDVP</li><li>Stock Connect closed / half-day</li><li>Other:</li></ul>
+<hr>
+<h2>5. Named date (½ page)</h2>
+<p><strong>Date:</strong> 2026-09-07 (effective day) — or a later session if you have a hand tape.</p>
+<p>What a D1 TA would have marked: review-week premium/basis are allowed to look wide; say that. Do not back-solve 1347/2338 from post-PR prices and call it a call.</p>
+<hr>
+<h2>6. Optional</h2>
+<p>Skip L5 / L3 this month. Ranker work is frozen until the daily row prints.</p>
+<hr>
+<h2>7. Honesty</h2>
+<ul><li>Fields still <code>NA</code> this month: almost everything until a hand-saved day exists</li><li>Something I almost imputed and did not:</li><li>Process miss:</li></ul>
+<hr>
+<h2>8. Next month watch</h2>
+<p>31 Oct gate. Keep a CSV row even if it is four numbers. Oct write should be the first month that can show a premium distribution if the row prints.</p></div>
+</body>
+</html>

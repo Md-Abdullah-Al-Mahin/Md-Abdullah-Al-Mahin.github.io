@@ -11,21 +11,23 @@
     color: #111;
     background: #fff;
   }
-  h1 {
-    font-size: 16px;
-    font-weight: 700;
-    margin: 0 0 4px;
-  }
-  p {
-    margin: 0 0 16px;
-    color: #555;
-    font-size: 13px;
-  }
+  nav { margin: 0 0 16px; font-size: 13px; }
+  nav a { color: #111; text-decoration: none; margin-right: 12px; }
+  nav a.on { font-weight: 700; }
+  h1 { font-size: 16px; font-weight: 700; margin: 0 0 4px; }
+  h2 { font-size: 14px; font-weight: 700; margin: 20px 0 8px; }
+  h3 { font-size: 13px; font-weight: 700; margin: 16px 0 6px; }
+  p { margin: 0 0 12px; color: #555; font-size: 13px; }
+  .write p { color: #111; }
+  ul { margin: 0 0 12px 18px; padding: 0; }
+  li { margin: 0 0 4px; }
+  code { font-family: Helvetica, Arial, sans-serif; }
   table {
     border-collapse: collapse;
     font-variant-numeric: tabular-nums;
     width: 100%;
     max-width: 960px;
+    margin: 0 0 16px;
   }
   th, td {
     text-align: right;
@@ -34,16 +36,21 @@
     white-space: nowrap;
   }
   th.left, td.left { text-align: left; }
-  th {
-    font-weight: 600;
-    color: #555;
-  }
+  th { font-weight: 600; color: #555; }
   .na { color: #999; }
+  .write table th, .write table td {
+    text-align: left;
+    white-space: normal;
+    vertical-align: top;
+  }
+  hr { border: 0; border-top: 1px solid #ddd; margin: 20px 0; }
 </style>
 </head>
 <body>
+
+<nav><a class="on" href="index.html">Tape</a><a class="" href="writes.html">Writes</a></nav>
 <h1>2026-09-21</h1>
-<p>2800 25.66 / NAV 25.688 / prem -10.90 / F 25044 / r_1w 2.337 / Tue 22 Sep 2026, 13:04 HKT</p>
+<p>2800 25.66 / NAV 25.688 / prem -10.90 / F 25044 / r_1w 2.337 / Tue 22 Sep 2026, 13:07 HKT</p>
 <table>
   <thead>
     <tr>
@@ -63,5 +70,6 @@
     <tr><td class="left">21 Sep</td><td>25.66</td><td>25.688</td><td>25.1517</td><td>-10.90</td><td>25044</td><td>2.337</td><td>23.74</td><td>0.235</td><td>28.59</td></tr><tr><td class="left">18 Sep</td><td>25.38</td><td>25.3912</td><td>24.8585</td><td>-4.41</td><td>24736</td><td>2.342</td><td>23.74</td><td>-1.982</td><td>-3.86</td></tr><tr><td class="left">17 Sep</td><td>25.22</td><td>25.2441</td><td>24.7115</td><td>-9.55</td><td>24572</td><td>2.398</td><td>23.74</td><td>-3.994</td><td>-8.80</td></tr><tr><td class="left">16 Sep</td><td class="na">NA</td><td>25.3541</td><td class="na">NA</td><td class="na">NA</td><td>24688</td><td>2.442</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td></tr><tr><td class="left">15 Sep</td><td class="na">NA</td><td>25.3043</td><td class="na">NA</td><td class="na">NA</td><td>24676</td><td>2.427</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td></tr><tr><td class="left">14 Sep</td><td class="na">NA</td><td>25.5558</td><td class="na">NA</td><td class="na">NA</td><td>24873</td><td>2.428</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td></tr><tr><td class="left">11 Sep</td><td class="na">NA</td><td>25.4371</td><td class="na">NA</td><td class="na">NA</td><td>24799</td><td>2.456</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td></tr><tr><td class="left">10 Sep</td><td class="na">NA</td><td>25.5842</td><td class="na">NA</td><td class="na">NA</td><td>24900</td><td>2.877</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td></tr><tr><td class="left">9 Sep</td><td class="na">NA</td><td>25.8707</td><td class="na">NA</td><td class="na">NA</td><td>25207</td><td>2.884</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td></tr><tr><td class="left">8 Sep</td><td class="na">NA</td><td>25.9092</td><td class="na">NA</td><td class="na">NA</td><td>25226</td><td>2.892</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td></tr>
   </tbody>
 </table>
+
 </body>
 </html>
