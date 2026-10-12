@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adds</title>
+<style>
+  :root {
+    --ink: #1a1916;
+    --mute: #6f6a62;
+    --line: #e4e0d8;
+    --paper: #f3f1ec;
+    --card: #fffcf7;
+    --neg: #9a3b2f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font: 15px/1.45 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 0 0 28px;
+  }
+  .brand {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+  nav {
+    display: flex;
+    padding: 3px;
+    background: #e8e4dc;
+    border-radius: 999px;
+  }
+  nav a {
+    color: var(--mute);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+  nav a.on { color: var(--ink); background: var(--card); }
+  .head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 0 18px;
+  }
+  h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.03em; margin: 0; }
+  h2 { font-size: 15px; font-weight: 700; margin: 28px 0 10px; }
+  h3 { font-size: 13px; font-weight: 700; margin: 20px 0 8px; }
+  .asof { margin: 0; color: var(--mute); font-size: 12px; }
+    .marks {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0 0 22px;
+  }
+  .marks.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .mark {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px 11px;
+  }
+  .mark .k {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin: 0 0 4px;
+  }
+  .mark .v { font-size: 20px; font-weight: 600; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+  .sheet {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow-x: auto;
+  }
+  p { margin: 0 0 12px; color: var(--mute); font-size: 14px; }
+  .memo p { color: var(--ink); }
+  ul { margin: 0 0 12px 18px; padding: 0; }
+  li { margin: 0 0 6px; }
+  code {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.92em;
+    background: #eeeae3;
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+  table {
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+    width: 100%;
+  }
+  th, td {
+    text-align: right;
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody tr:first-child td { font-weight: 600; }
+  th.left, td.left { text-align: left; }
+  th {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mute);
+    background: #f7f4ee;
+  }
+  .na { color: #b3aea5; font-weight: 400; }
+  .neg { color: var(--neg); }
+  .pdfs { list-style: none; margin: 0; padding: 0; }
+  .pdfs li + li { margin-top: 10px; }
+  .pdfs a {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .pair h2 { margin-top: 0; }
+  @media (max-width: 720px) {
+    .marks, .marks.four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pair { grid-template-columns: 1fr; }
+    h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header><p class="brand">2800</p><nav><a class="" href="index.html">Tape</a><a class="on" href="adds.html">Adds</a><a class="" href="writes.html">Writes</a></nav></header>
+<div class="head"><h1>Adds</h1></div>
+<p>No rank file yet.</p>
+
+</div>
+</body>
+</html>
