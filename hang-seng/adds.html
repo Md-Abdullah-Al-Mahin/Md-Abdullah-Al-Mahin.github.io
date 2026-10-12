@@ -144,10 +144,69 @@
     gap: 16px;
   }
   .pair h2 { margin-top: 0; }
+  .chart-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px 14px 4px;
+    margin: 0 0 22px;
+  }
+  .range {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    margin: 0 0 10px;
+    font-size: 12px;
+    color: var(--mute);
+    font-weight: 600;
+  }
+  .range input[type="date"] {
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    font: 600 12px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 6px 8px;
+    border-radius: 8px;
+    margin-left: 6px;
+  }
+  .picks { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; }
+  .pick {
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--mute);
+    font: 600 12px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 6px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .pick.on { color: var(--card); background: var(--ink); border-color: var(--ink); }
+  .chart-box { position: relative; }
+  #chart { width: 100%; height: 260px; display: block; cursor: ew-resize; touch-action: none; }
+  #chart text {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    fill: var(--mute);
+  }
+  .tip {
+    display: none;
+    position: absolute;
+    pointer-events: none;
+    background: var(--ink);
+    color: var(--card);
+    font-size: 12px;
+    line-height: 1.4;
+    padding: 6px 8px;
+    border-radius: 8px;
+    white-space: pre;
+    z-index: 2;
+  }
+  .chart-note { margin: 8px 0 6px; font-size: 12px; }
   @media (max-width: 720px) {
     .marks, .marks.four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .pair { grid-template-columns: 1fr; }
     h1 { font-size: 22px; }
+    #chart { height: 220px; }
   }
 </style>
 </head>
