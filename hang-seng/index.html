@@ -69,6 +69,7 @@
     margin: 0 0 22px;
   }
   .marks.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .marks.seven { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .mark {
     background: var(--card);
     border: 1px solid var(--line);
@@ -203,7 +204,7 @@
   }
   .chart-note { margin: 8px 0 6px; font-size: 12px; }
   @media (max-width: 720px) {
-    .marks, .marks.four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .marks, .marks.four, .marks.seven { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .pair { grid-template-columns: 1fr; }
     h1 { font-size: 22px; }
     #chart { height: 220px; }
@@ -213,8 +214,8 @@
 <body>
 <div class="wrap">
 
-<header><p class="brand">2800</p><nav><a class="on" href="index.html">Tape</a><a class="" href="adds.html">Adds</a><a class="" href="writes.html">Writes</a></nav></header>
-<div class="head"><h1>2026-10-23</h1><p class="asof">Sat 24 Oct 2026, 01:52 HKT</p></div>
+<header><p class="brand">2800</p><nav><a class="on" href="index.html">Tape</a><a class="" href="sleeve.html">Sleeve</a><a class="" href="adds.html">Adds</a><a class="" href="writes.html">Writes</a></nav></header>
+<div class="head"><h1>2026-10-23</h1><p class="asof">Mon 26 Oct 2026, 10:41 HKT</p></div>
 <div class="marks">
   <div class="mark"><span class="k">2800</span><span class="v ">23.76</span></div>
   <div class="mark"><span class="k">NAV</span><span class="v ">23.7632</span></div>
@@ -251,13 +252,15 @@
       b.classList.toggle("on", on);
     });
   }
+  var storeOrder = data.storage && data.storage.order ? data.storage.order : "d1-chart-order";
+  var storeRange = data.storage && data.storage.range ? data.storage.range : "d1-chart-range";
   function save() {
-    try { localStorage.setItem("d1-chart-order", JSON.stringify(order)); } catch (e) {}
+    try { localStorage.setItem(storeOrder, JSON.stringify(order)); } catch (e) {}
   }
   function restore() {
     var keys = null;
     try {
-      var raw = localStorage.getItem("d1-chart-order");
+      var raw = localStorage.getItem(storeOrder);
       keys = raw ? JSON.parse(raw) : null;
     } catch (e) { return; }
     if (!Array.isArray(keys)) return;
@@ -294,13 +297,13 @@
   function saveRange() {
     if (!fromEl || !toEl) return;
     try {
-      localStorage.setItem("d1-chart-range", JSON.stringify({ from: fromEl.value, to: toEl.value }));
+      localStorage.setItem(storeRange, JSON.stringify({ from: fromEl.value, to: toEl.value }));
     } catch (e) {}
   }
   function restoreRange() {
     if (!fromEl || !toEl || !firstDate) return;
     try {
-      var raw = localStorage.getItem("d1-chart-range");
+      var raw = localStorage.getItem(storeRange);
       var saved = raw ? JSON.parse(raw) : null;
       if (saved && typeof saved.from === "string") fromEl.value = saved.from;
       if (saved && typeof saved.to === "string") toEl.value = saved.to;
@@ -404,6 +407,9 @@
     if (key === "hsi" || key === "hsif_front") return Math.round(v).toLocaleString("en-US");
     if (key === "fair") return v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     if (key === "q" || key === "r" || key === "impl_rq") return v.toFixed(2);
+    if (key.slice(-4) === "_hkd") {
+      return v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
     return v.toFixed(2);
   }
   function fmtDate(iso) {
@@ -547,7 +553,8 @@
       parts.push(names(empty) + (empty.length === 1 ? " has no values." : " have no values."));
     }
     if (viewDates[0] !== data.dates[0] || viewDates[viewDates.length - 1] !== data.dates[data.dates.length - 1]) {
-      parts.push("The window runs from " + fmtDate(viewDates[0]) + " through " + fmtDate(viewDates[viewDates.length - 1]) + ". Double-click the chart to see the whole tape.");
+      var resetNote = data.reset || "Double-click the chart to see the whole tape.";
+      parts.push("The window runs from " + fmtDate(viewDates[0]) + " through " + fmtDate(viewDates[viewDates.length - 1]) + ". " + resetNote);
     }
     note.textContent = parts.join(" ");
   }

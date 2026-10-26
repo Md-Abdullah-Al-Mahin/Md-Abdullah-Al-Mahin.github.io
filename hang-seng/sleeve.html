@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-10-23</title>
+<style>
+  :root {
+    --ink: #1a1916;
+    --mute: #6f6a62;
+    --line: #e4e0d8;
+    --paper: #f3f1ec;
+    --card: #fffcf7;
+    --neg: #9a3b2f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font: 15px/1.45 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 28px 20px 72px; }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 0 0 28px;
+  }
+  .brand {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+  nav {
+    display: flex;
+    padding: 3px;
+    background: #e8e4dc;
+    border-radius: 999px;
+  }
+  nav a {
+    color: var(--mute);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+  nav a.on { color: var(--ink); background: var(--card); }
+  .head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 0 18px;
+  }
+  h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.03em; margin: 0; }
+  h2 { font-size: 15px; font-weight: 700; margin: 28px 0 10px; }
+  h3 { font-size: 13px; font-weight: 700; margin: 20px 0 8px; }
+  .asof { margin: 0; color: var(--mute); font-size: 12px; }
+    .marks {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0 0 22px;
+  }
+  .marks.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .marks.seven { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .mark {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px 11px;
+  }
+  .mark .k {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin: 0 0 4px;
+  }
+  .mark .v { font-size: 20px; font-weight: 600; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+  .sheet {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow-x: auto;
+  }
+  p { margin: 0 0 12px; color: var(--mute); font-size: 14px; }
+  .memo p { color: var(--ink); }
+  ul { margin: 0 0 12px 18px; padding: 0; }
+  li { margin: 0 0 6px; }
+  code {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.92em;
+    background: #eeeae3;
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+  table {
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+    width: 100%;
+  }
+  th, td {
+    text-align: right;
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody tr:first-child td { font-weight: 600; }
+  th.left, td.left { text-align: left; }
+  th {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mute);
+    background: #f7f4ee;
+  }
+  .na { color: #b3aea5; font-weight: 400; }
+  .neg { color: var(--neg); }
+  .pdfs { list-style: none; margin: 0; padding: 0; }
+  .pdfs li + li { margin-top: 10px; }
+  .pdfs a {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .pair h2 { margin-top: 0; }
+  .chart-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px 14px 4px;
+    margin: 0 0 22px;
+  }
+  .range {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    margin: 0 0 10px;
+    font-size: 12px;
+    color: var(--mute);
+    font-weight: 600;
+  }
+  .range input[type="date"] {
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    font: 600 12px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 6px 8px;
+    border-radius: 8px;
+    margin-left: 6px;
+  }
+  .picks { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; }
+  .pick {
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--mute);
+    font: 600 12px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 6px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .pick.on { color: var(--card); background: var(--ink); border-color: var(--ink); }
+  .chart-box { position: relative; }
+  #chart { width: 100%; height: 260px; display: block; cursor: ew-resize; touch-action: none; }
+  #chart text {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    fill: var(--mute);
+  }
+  .tip {
+    display: none;
+    position: absolute;
+    pointer-events: none;
+    background: var(--ink);
+    color: var(--card);
+    font-size: 12px;
+    line-height: 1.4;
+    padding: 6px 8px;
+    border-radius: 8px;
+    white-space: pre;
+    z-index: 2;
+  }
+  .chart-note { margin: 8px 0 6px; font-size: 12px; }
+  @media (max-width: 720px) {
+    .marks, .marks.four, .marks.seven { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pair { grid-template-columns: 1fr; }
+    h1 { font-size: 22px; }
+    #chart { height: 220px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header><p class="brand">2800</p><nav><a class="" href="index.html">Tape</a><a class="on" href="sleeve.html">Sleeve</a><a class="" href="adds.html">Adds</a><a class="" href="writes.html">Writes</a></nav></header>
+<div class="head"><h1>2026-10-23</h1><p class="asof">HK$100 million long 2800, short the front future</p></div>
+<div class="marks seven">
+  <div class="mark"><span class="k">total</span><span class="v ">2,305,097.91</span></div><div class="mark"><span class="k">premium</span><span class="v ">69,341.82</span></div><div class="mark"><span class="k">dividends</span><span class="v ">147,871.58</span></div><div class="mark"><span class="k">tracking</span><span class="v ">139,344.87</span></div><div class="mark"><span class="k">basis</span><span class="v neg">-813,934.12</span></div><div class="mark"><span class="k">carry</span><span class="v neg">-356,374.90</span></div><div class="mark"><span class="k">roll</span><span class="v neg">-2,468,034.43</span></div>
+</div>
+<p>The lines are the running sum in Hong Kong dollars. The table is each session.</p>
+<div class="chart-card"><div class="range"><label>From <input type="date" id="chart-from" min="2026-01-05" max="2026-10-23" value="2026-01-05"></label><label>To <input type="date" id="chart-to" min="2026-01-05" max="2026-10-23" value="2026-10-23"></label></div><div class="picks" id="picks"><button type="button" class="pick on" data-key="total_hkd" aria-pressed="true">total</button><button type="button" class="pick" data-key="premium_hkd" aria-pressed="false">premium</button><button type="button" class="pick" data-key="dividends_hkd" aria-pressed="false">dividends</button><button type="button" class="pick" data-key="tracking_hkd" aria-pressed="false">tracking</button><button type="button" class="pick" data-key="basis_hkd" aria-pressed="false">basis</button><button type="button" class="pick" data-key="carry_hkd" aria-pressed="false">carry</button><button type="button" class="pick" data-key="roll_hkd" aria-pressed="false">roll</button><button type="button" class="pick" data-key="unsplit_hkd" aria-pressed="false">unsplit</button></div><div class="chart-box"><svg id="chart" role="img" aria-label="Selected columns over time"></svg><div class="tip" id="chart-tip"></div></div><p class="chart-note" id="chart-note"></p></div><script type="application/json" id="chart-data">{"dates":["2026-01-05","2026-01-06","2026-01-07","2026-01-08","2026-01-09","2026-01-12","2026-01-13","2026-01-14","2026-01-15","2026-01-16","2026-01-19","2026-01-20","2026-01-21","2026-01-22","2026-01-23","2026-01-26","2026-01-27","2026-01-28","2026-01-29","2026-01-30","2026-02-02","2026-02-03","2026-02-04","2026-02-05","2026-02-06","2026-02-09","2026-02-10","2026-02-11","2026-02-12","2026-02-13","2026-02-16","2026-02-20","2026-02-23","2026-02-24","2026-02-25","2026-02-26","2026-02-27","2026-03-02","2026-03-03","2026-03-04","2026-03-05","2026-03-06","2026-03-09","2026-03-10","2026-03-11","2026-03-12","2026-03-13","2026-03-16","2026-03-17","2026-03-18","2026-03-19","2026-03-20","2026-03-23","2026-03-24","2026-03-25","2026-03-26","2026-03-27","2026-03-30","2026-03-31","2026-04-01","2026-04-02","2026-04-08","2026-04-09","2026-04-10","2026-04-13","2026-04-14","2026-04-15","2026-04-16","2026-04-17","2026-04-20","2026-04-21","2026-04-22","2026-04-23","2026-04-24","2026-04-27","2026-04-28","2026-04-29","2026-04-30","2026-05-04","2026-05-05","2026-05-06","2026-05-07","2026-05-08","2026-05-11","2026-05-12","2026-05-13","2026-05-14","2026-05-15","2026-05-18","2026-05-19","2026-05-20","2026-05-21","2026-05-22","2026-05-26","2026-05-27","2026-05-28","2026-05-29","2026-06-01","2026-06-02","2026-06-03","2026-06-04","2026-06-05","2026-06-08","2026-06-09","2026-06-10","2026-06-11","2026-06-12","2026-06-15","2026-06-16","2026-06-17","2026-06-18","2026-06-22","2026-06-23","2026-06-24","2026-06-25","2026-06-26","2026-06-29","2026-06-30","2026-07-02","2026-07-03","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-03","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-07","2026-09-08","2026-09-09","2026-09-10","2026-09-11","2026-09-14","2026-09-15","2026-09-16","2026-09-17","2026-09-18","2026-09-21","2026-09-22","2026-09-23","2026-09-24","2026-09-25","2026-09-28","2026-09-29","2026-09-30","2026-10-02","2026-10-05","2026-10-06","2026-10-07","2026-10-08","2026-10-09","2026-10-12","2026-10-13","2026-10-14","2026-10-15","2026-10-16","2026-10-20","2026-10-21","2026-10-22","2026-10-23"],"series":{"total_hkd":[133462.08,181493.08,284028.55,263483.62,185015.72,343035.3,238876.38,417160.98,274896.25,366188.92,228433.62,403807.9,445843.67,383849.42,485778.07,230984.06,198468.86,61749.84,18396.37,-55396.56,164016.32,263486.79,444261.32,398924.03,286201.98,201718.29,338123.6,515737.47,522579.88,520742.7,176592.27,442508.95,527256.99,556776.04,446178.28,387061.14,677438.29,1080023.45,752625.82,1010311.84,792485.57,844052.21,944541.11,595744.59,640708.46,874166.05,963493.89,987226.09,759325.45,732218.81,720835.14,779712.74,987452.89,1141315.04,764255.91,991470.1,1033001.49,584014.1,859571.07,503138.14,785213.83,510780.26,708165.59,454054.07,685915.59,632271.07,533709.07,860791.7,527299.66,564275.27,552434.83,681005.6,615707.91,1064663.68,1227165.06,1154321.17,690903.99,605351.27,436124.3,337290.01,189381.41,469737.66,429548.88,368320.51,399755.7,402793.77,390673.19,738666.78,345049.92,602507.07,648407.56,429853.99,1022135.35,1150424.02,1131755.16,1178028.84,1156406.68,1246156.5,966516.18,1277852.74,1296308.34,1082149.53,1193416.19,633877.61,1395693.08,1300965.64,1033563.49,1141546.01,1036814.87,1215023.78,1120263.59,1173578.41,1146036.42,1246589.36,1305910.99,1169677.88,928591.41,1379869.93,1433318.47,1634227.04,1757165.79,1393353.52,2099448.99,1528093.75,1429003.45,1494838.94,1503004.21,1329526.04,1398371.73,1592346.17,1217647.99,1287879.59,1219243.5,1379924.62,1335302.36,1455353.74,1324765.6,1438944.04,1611615.54,1291569.1,1302495.55,1396246.76,1406227.47,1287906.15,1452845.26,1332502.52,1510290.18,1373251.48,1510829.18,1527488.79,1623861.16,1553143.22,1636558.24,1557042.93,1344699.18,1573945.35,1351695.03,1342495.25,1470142.32,1437249.1,1960292.74,2215807.91,1896025.58,1947868.85,1846290.68,2107611.21,2078920.03,1999408.38,2207857.32,1987105.76,2239533.83,2012925.27,2122380.52,2118194.7,2086061.4,1944887.06,2212731.39,2003872.41,2303576.86,1998016.82,1980185.9,2301411.46,2195625.94,2396371.28,2002235.28,2219310.75,2145612.09,2193867.14,2152212.91,2170722.91,2195318.47,2213964.4,2204427.97,2210001.32,2235399.16,2363098.27,2204490.91,2305097.91],"premium_hkd":[-107761.87,-125861.42,-4581.66,-112983.76,-123622.06,-41803.88,-45535.22,-39248.24,-52851.18,-56538.5,-47292.94,-59251.09,23582.49,79179.5,4347.04,19554.76,-65693.57,-4200.16,-10262.93,2512.09,-162705.3,-160478.13,89151.5,22681.78,-26026.71,-60406.38,-48282.94,11980.03,-6578.92,21321.23,173300.32,77232.07,34063.9,11719.58,25898.68,-23767.74,236954.61,63348.66,-39010.55,196351.55,-86785.7,-156981.78,45178.71,70549.51,-69633.84,195500.26,-80229.39,35244.95,208675.27,-87507.94,-59730.16,34213.94,186796.1,88820.39,194104.3,44844.75,-97955.57,-90019.06,79980.94,-113001.52,21689.16,63027.74,-85063.86,-97746.41,31840.75,138158.16,3425.34,46108.27,-47524.69,22445.05,-78455.18,17583.68,-23232.65,-35064.71,89840.09,40297.41,101113.42,88918.3,74632.59,-8446.68,-153335.23,20048.8,-78232.22,23277.21,15741.41,-18624.15,71119.44,-74964.9,-123969.49,18555.68,111319.34,190592.35,-19009.52,59672.65,61996.43,60040.25,-96729.35,141459.63,36319.44,112307.28,24412.14,60825.61,77835.1,99052.07,6682.59,7491.0,24564.17,134213.29,16939.12,27397.69,-66200.37,87012.15,-25984.54,63466.94,218088.79,153833.47,-48506.22,8758.74,-38492.12,-21045.31,32736.2,-133376.76,10435.95,-111218.55,-52755.75,34165.45,165851.03,-163456.54,-39552.16,-163275.65,-96422.17,24375.33,-50624.67,14095.14,-29907.98,108172.27,91051.65,16633.05,126602.61,181230.83,-81269.17,-16265.39,28947.38,-21052.62,62408.92,22271.31,44981.38,-142470.8,-18050.4,-14186.41,72532.34,2039.27,63672.55,124057.17,868.76,-95735.01,-33379.35,-124078.81,58400.15,61848.43,-30418.03,-39620.48,-34593.41,-50834.71,147534.86,68707.75,-38215.33,-44011.31,58542.87,8112.85,91905.14,58650.05,19914.87,-19548.43,31601.45,-34592.4,98299.26,-77302.92,-24236.88,-61273.92,126226.08,-33852.97,85081.0,-62187.41,-95547.87,61513.82,24595.68,13287.12,-97687.49,-98090.07,85444.07,130208.26,20608.26,-78906.3,75807.64,144674.8,-18020.35,69341.82],"dividends_hkd":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,396.51,14580.91,17308.89,16920.39,16920.39,22830.56,22432.47,22432.47,22432.47,24411.88,24005.05,24005.05,23603.77,59952.72,140624.3,140624.3,140222.69,140222.69,140222.69,139818.16,148279.08,147871.58,147871.58,147871.58],"tracking_hkd":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,-12513.24,-36750.87,-40453.96,-18992.96,-18992.96,1552.33,-9256.37,1073.49,-6304.07,51186.72,45185.49,25250.32,38540.45,68841.58,29910.88,24661.24,18485.92,21326.12,45096.73,33769.47,61743.82,82730.8,155269.84,139344.87],"basis_hkd":[248533.8,340611.76,317886.57,404360.15,330591.47,401497.8,290330.23,434137.31,326469.89,417616.62,271220.42,459972.82,421841.64,313660.58,492293.97,492293.97,550764.72,358078.11,323615.07,225717.79,599397.23,698405.39,630098.49,660045.61,591606.57,539121.53,674540.86,795130.27,822013.19,793085.09,299730.9,663320.42,663320.42,698768.44,580529.92,573057.68,607931.24,1179342.86,946839.6,971172.03,1033311.92,1156725.61,1058539.81,698108.68,816368.0,560602.86,907069.52,836111.05,438418.4,714699.94,667745.85,632021.17,675973.61,958471.65,958471.65,1345273.8,1538463.25,1069240.09,1178408.32,1010949.2,1142758.96,839572.17,1196656.82,951165.14,1059609.18,910393.55,948735.69,1252158.16,1016576.64,989627.44,1082567.52,1109863.43,1080127.05,1080127.05,1119313.95,1087492.18,1310819.64,1237251.48,1003938.46,996274.41,991795.41,1102347.95,1166119.53,1010362.72,1045997.43,1052373.65,892985.68,1277236.11,927850.66,1042124.45,981305.43,663346.6,663346.6,690762.02,621151.15,573102.0,700750.55,547865.93,303242.1,502102.86,582428.34,236415.53,315936.56,-292570.7,466611.74,259179.41,-16457.53,-32316.35,-28291.02,146650.14,79399.84,-24467.23,35149.44,46419.45,-72621.15,-173891.21,-173891.21,-173891.21,-313045.85,-106973.68,-13312.13,-220626.39,386645.47,-71422.6,-222565.87,-238615.43,-344877.5,-160002.19,-199263.0,90277.4,-317625.14,-369249.74,-375257.95,-273661.74,-287425.68,-288347.04,-394110.56,-174678.97,-174678.97,-174678.97,94169.91,113470.62,64385.26,-27527.71,62757.24,-8381.84,131955.56,156553.25,120154.12,120784.13,158567.53,163635.65,194651.13,73451.23,3330.38,306258.62,-90491.35,-4763.96,-64250.25,-64250.25,-64250.25,106516.82,-285867.94,-235771.56,-539182.73,-213579.74,-156050.4,-247924.77,-302761.65,-515188.52,-357200.19,-570342.71,-427562.24,-400977.88,-471331.46,-529107.42,-391183.05,-442203.97,-442203.97,-735970.85,-925117.44,-454873.13,-671766.51,-390332.96,-743532.42,-663791.45,-717291.04,-729764.88,-698948.16,-682922.62,-831122.96,-862053.06,-784896.41,-666123.47,-823275.11,-783221.05,-846810.1,-813934.12],"carry_hkd":[-6416.47,-29379.03,-27245.03,-29210.34,-22441.52,-14474.09,-1057.31,5386.26,-17280.57,-14309.2,-17140.27,-19135.46,-20456.84,-29258.78,-29333.88,-29333.88,-30155.83,-29307.96,-30134.5,-25128.8,-21039.28,-22197.05,-22644.23,-30540.74,-30131.59,-22036.7,-31693.65,-33716.96,-38007.96,-43926.75,-44340.8,-50668.98,-50668.98,-40293.05,-44655.54,-51006.95,-53584.56,-60569.02,-57422.42,-64679.46,-60045.7,-57281.23,-55495.33,-59352.31,-62588.07,-46216.63,-51116.16,-64899.46,-67763.9,-70044.66,-72426.95,-76936.65,-88646.75,-95372.89,-95372.89,-121107.07,-127423.34,-119447.99,-122154.97,-104404.55,-107725.49,-137028.9,-152786.04,-151388.11,-162085.76,-166918.02,-166608.81,-173507.4,-183926.33,-184729.07,-185070.48,-186844.9,-187838.66,-187838.66,-190148.3,-188682.57,-193705.98,-194088.95,-203826.49,-212525.18,-215112.19,-220758.08,-226579.4,-233247.66,-234535.21,-235104.52,-236392.96,-231504.57,-234739.98,-233454.69,-233609.74,-237664.14,-237664.14,-240007.34,-241569.87,-245123.22,-243883.53,-246702.96,-253514.47,-253092.02,-254652.5,-258889.55,-261854.06,-262340.74,-260061.16,-231545.87,-241236.88,-251391.38,-258314.95,-273175.76,-273175.76,-275014.86,-276739.83,-284153.18,-277319.13,-280265.8,-280265.8,-280265.8,-272180.5,-274392.6,-281159.19,-278914.98,-283681.57,-285458.47,-284376.5,-286527.47,-295861.02,-302557.61,-301787.79,-296869.48,-300940.77,-300065.78,-300543.25,-305122.91,-305559.23,-308844.06,-311502.03,-313358.94,-313358.94,-313358.94,-315754.2,-313831.82,-315417.71,-314337.29,-315512.37,-308811.43,-309081.31,-305027.17,-302668.7,-305897.49,-314298.22,-319680.64,-327454.14,-334043.65,-334082.56,-337619.73,-341499.45,-341499.45,-341382.5,-341382.5,-341382.5,-341069.6,-341582.83,-339923.49,-343651.68,-344704.28,-346907.87,-346749.87,-345285.97,-324568.24,-329486.48,-330489.79,-333246.48,-333489.26,-334302.13,-341453.42,-343450.01,-346758.4,-346758.4,-347969.98,-352947.52,-352217.07,-352665.62,-345555.63,-346723.65,-346515.67,-342685.45,-337298.08,-340535.31,-332398.63,-336559.94,-334588.3,-335451.99,-337405.22,-346004.94,-347806.53,-352668.72,-356374.9],"roll_hkd":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,-328977.99,-328977.99,-328977.99,-328977.99,-328977.99,-328977.99,-328977.99,-328977.99,-328977.99,-328977.99,-328977.99,-328977.99,-328977.99,-328977.99,-328977.99,-328977.99,-328977.99,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-2721707.42,-4281731.85,-4281731.85,-4281731.85,-4281731.85,-4281731.85,-4281731.85,-4281731.85,-4281731.85,-4281731.85,-4281731.85,-4281731.85,-4281731.85,-4281731.85,-4281731.85,-4281731.85,-4281731.85,-4281731.85,-4281731.85,-4281731.85,-4061783.71,-4061783.71,-4061783.71,-4061783.71,-4061783.71,-4061783.71,-4061783.71,-4061783.71,-4061783.71,-4061783.71,-4061783.71,-4061783.71,-4061783.71,-4061783.71,-4061783.71,-4061783.71,-4061783.71,-4061783.71,-4061783.71,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-4172078.46,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3207979.42,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3679770.93,-3003587.93,-3003587.93,-3003587.93,-3003587.93,-3003587.93,-3003587.93,-3003587.93,-3003587.93,-3003587.93,-3003587.93,-3003587.93,-3003587.93,-3003587.93,-3003587.93,-3003587.93,-3003587.93,-3003587.93,-3003587.93,-2468034.43,-2468034.43,-2468034.43,-2468034.43,-2468034.43,-2468034.43,-2468034.43,-2468034.43,-2468034.43,-2468034.43,-2468034.43,-2468034.43,-2468034.43,-2468034.43,-2468034.43,-2468034.43,-2468034.43,-2468034.43,-2468034.43,-2468034.43],"unsplit_hkd":[-893.38,-3878.23,-2031.33,1317.57,487.83,-2184.53,-4861.32,16885.65,18558.11,19420.0,21646.41,22221.63,20876.38,20268.12,18470.94,77447.2,72531.53,66157.84,64156.72,70480.35,77341.66,76734.57,76633.55,75715.37,79731.7,74017.83,72537.32,71322.12,74131.56,79241.12,76879.84,81603.43,2602249.07,2608288.49,2606112.64,2610485.57,2607844.42,2619608.37,2623926.61,2629175.14,2627712.47,2623297.03,2618025.34,2608146.13,2678269.79,2885986.98,2909477.34,2902476.97,2901703.1,2896778.89,2906953.82,2912121.7,2935037.35,2911103.31,3988784.7,4004190.47,4001649.0,4005972.91,4005068.63,3991326.86,4010223.05,4026941.1,4031090.52,4033755.3,4038283.27,4032369.23,4029888.7,4017764.52,4023905.89,4018663.7,4015124.82,4022135.24,4028384.02,4269223.71,4269943.03,4276997.86,3534460.62,3535054.15,3623163.45,3623771.17,3627817.13,3629882.7,3630024.68,3629711.95,3634335.78,3665932.5,3724744.74,3829683.85,3837692.44,3837065.34,3851176.24,3875362.89,4787540.87,4812075.15,4862255.91,4962088.27,4968347.47,4975612.36,5052547.57,5088613.08,5116198.82,5215876.4,5233577.05,5261815.44,5354538.37,5437919.56,5438772.19,5463118.91,5478560.18,5486230.17,5552318.34,5558126.81,5585689.81,5592934.61,5609840.94,5642079.88,5603333.1,5033247.62,5265016.36,5244618.05,5226880.33,5234251.07,5194028.56,5204172.79,5196680.99,5193795.81,5185871.12,5163521.8,5146954.1,5170193.32,5140615.49,5140799.2,5153648.79,5152593.55,5166174.67,5152351.99,5147305.96,5118328.32,5181030.26,5278147.11,5285119.94,5292644.28,5308083.47,5330594.7,5322962.4,5307195.41,5322205.48,5343967.13,5391165.09,5406559.49,5386830.44,5386919.87,5385459.63,5373349.11,5354353.53,5380812.4,5496836.11,5492608.4,5497145.85,5460804.35,5399931.45,5493569.1,5561657.69,5577986.54,5585178.16,5600775.41,5623681.56,5641682.26,5800950.0,5822337.6,5837903.29,5858695.65,5866862.3,5875798.2,5875798.2,5875798.19,5875798.19,5875798.2,5586883.11,5586883.11,5586883.11,5586883.1,5586883.1,5586883.11,5586883.11,5586883.11,5586883.11,5586883.11,5586883.12,5586883.12,5586883.12,5586883.12,5586883.12,5586883.11,5586883.1,5586883.1,5586883.09,5586883.09]},"labels":{"total_hkd":"total","premium_hkd":"premium","dividends_hkd":"dividends","tracking_hkd":"tracking","basis_hkd":"basis","carry_hkd":"carry","roll_hkd":"roll","unsplit_hkd":"unsplit"},"storage":{"order":"d1-sleeve-order","range":"d1-sleeve-range"},"reset":"Double-click the chart to see the whole sleeve."}</script><script>
+(function () {
+  var dataEl = document.getElementById("chart-data");
+  var svg = document.getElementById("chart");
+  var tip = document.getElementById("chart-tip");
+  var note = document.getElementById("chart-note");
+  if (!dataEl || !svg || !tip || !note) return;
+  var data = JSON.parse(dataEl.textContent);
+  var picks = Array.prototype.slice.call(document.querySelectorAll("#picks .pick"));
+  var COLORS = ["#1a1916", "#9a3b2f", "#2c6e5a", "#3d5a80", "#8a6230", "#6b4c7a"];
+  var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var plotGeom = null;
+  var plotted = [];
+  var order = picks.filter(function (b) { return b.getAttribute("aria-pressed") === "true"; })
+    .map(function (b) { return b.getAttribute("data-key"); });
+  var fromEl = document.getElementById("chart-from");
+  var toEl = document.getElementById("chart-to");
+  var viewDates = data.dates.slice();
+  var firstDate = data.dates[0] || "";
+  var lastDate = data.dates.length ? data.dates[data.dates.length - 1] : "";
+
+  function paintPressed() {
+    picks.forEach(function (b) {
+      var on = order.indexOf(b.getAttribute("data-key")) !== -1;
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.classList.toggle("on", on);
+    });
+  }
+  var storeOrder = data.storage && data.storage.order ? data.storage.order : "d1-chart-order";
+  var storeRange = data.storage && data.storage.range ? data.storage.range : "d1-chart-range";
+  function save() {
+    try { localStorage.setItem(storeOrder, JSON.stringify(order)); } catch (e) {}
+  }
+  function restore() {
+    var keys = null;
+    try {
+      var raw = localStorage.getItem(storeOrder);
+      keys = raw ? JSON.parse(raw) : null;
+    } catch (e) { return; }
+    if (!Array.isArray(keys)) return;
+    keys = keys.filter(function (key) { return data.labels[key]; });
+    if (!keys.length) return;
+    order = keys;
+    paintPressed();
+  }
+  picks.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var key = b.getAttribute("data-key");
+      var on = order.indexOf(key) === -1;
+      if (on) order.push(key);
+      else order = order.filter(function (k) { return k !== key; });
+      paintPressed();
+      save();
+      draw();
+    });
+  });
+
+  function clampRange() {
+    if (!fromEl || !toEl || !firstDate) return { from: firstDate, to: lastDate };
+    var from = fromEl.value;
+    var to = toEl.value;
+    if (!from || from < firstDate) from = firstDate;
+    if (from > lastDate) from = lastDate;
+    if (!to || to > lastDate) to = lastDate;
+    if (to < firstDate) to = firstDate;
+    if (from > to) to = from;
+    fromEl.value = from;
+    toEl.value = to;
+    return { from: from, to: to };
+  }
+  function saveRange() {
+    if (!fromEl || !toEl) return;
+    try {
+      localStorage.setItem(storeRange, JSON.stringify({ from: fromEl.value, to: toEl.value }));
+    } catch (e) {}
+  }
+  function restoreRange() {
+    if (!fromEl || !toEl || !firstDate) return;
+    try {
+      var raw = localStorage.getItem(storeRange);
+      var saved = raw ? JSON.parse(raw) : null;
+      if (saved && typeof saved.from === "string") fromEl.value = saved.from;
+      if (saved && typeof saved.to === "string") toEl.value = saved.to;
+    } catch (e) {}
+    clampRange();
+  }
+  function viewWindow() {
+    var range = clampRange();
+    var start = -1, end = -1, i;
+    for (i = 0; i < data.dates.length; i++) {
+      if (data.dates[i] >= range.from && data.dates[i] <= range.to) {
+        if (start < 0) start = i;
+        end = i;
+      }
+    }
+    if (start < 0) return null;
+    return { start: start, end: end };
+  }
+  function onRange() {
+    clampRange();
+    saveRange();
+    draw();
+  }
+  if (fromEl && toEl) {
+    fromEl.addEventListener("change", onRange);
+    toEl.addEventListener("change", onRange);
+  }
+
+  function extent(vals) {
+    var lo = null, hi = null;
+    for (var i = 0; i < vals.length; i++) {
+      var v = vals[i];
+      if (v == null || !isFinite(v)) continue;
+      if (lo == null || v < lo) lo = v;
+      if (hi == null || v > hi) hi = v;
+    }
+    return lo == null ? null : [lo, hi];
+  }
+  function fitsWith(existing, ext) {
+    if (!existing.length) return true;
+    var lo = existing[0][0], hi = existing[0][1], i;
+    for (i = 1; i < existing.length; i++) {
+      if (existing[i][0] < lo) lo = existing[i][0];
+      if (existing[i][1] > hi) hi = existing[i][1];
+    }
+    var combined = Math.max(hi, ext[1]) - Math.min(lo, ext[0]) || 1;
+    var newSpan = ext[1] - ext[0];
+    var base = (hi - lo) || Math.abs(hi) || 1;
+    if (newSpan / combined >= 0.12) {
+      for (i = 0; i < existing.length; i++) {
+        var s = existing[i][1] - existing[i][0];
+        if (s / combined < 0.12 && s / base >= 0.02) return false;
+      }
+      return true;
+    }
+    var mid = (ext[0] + ext[1]) / 2;
+    var flat = newSpan / (Math.abs(mid) || 1) < 0.02;
+    if (flat && mid >= lo && mid <= hi) return true;
+    var existingMid = (lo + hi) / 2;
+    var existingFlat = (hi - lo) / (Math.abs(existingMid) || 1) < 0.02;
+    if (!(flat && existingFlat)) return false;
+    var big = Math.max(Math.abs(existingMid), Math.abs(mid));
+    var small = Math.min(Math.abs(existingMid), Math.abs(mid));
+    return big < 1e-9 || big <= Math.max(small * 5, small + 1);
+  }
+  function assign(items) {
+    var left = [], right = [], leftExt = [], rightExt = [], skipped = [];
+    items.forEach(function (item) {
+      if (fitsWith(leftExt, item.ext)) {
+        left.push(item); leftExt.push(item.ext);
+      } else if (fitsWith(rightExt, item.ext)) {
+        right.push(item); rightExt.push(item.ext);
+      } else skipped.push(item);
+    });
+    return { left: left, right: right, skipped: skipped };
+  }
+  function pad(ext) {
+    var s = ext[1] - ext[0];
+    var p = s === 0 ? Math.max(Math.abs(ext[0]) * 0.05, 0.5) : s * 0.1;
+    return [ext[0] - p, ext[1] + p];
+  }
+  function union(items) {
+    var lo = items[0].ext[0], hi = items[0].ext[1];
+    items.forEach(function (item) {
+      if (item.ext[0] < lo) lo = item.ext[0];
+      if (item.ext[1] > hi) hi = item.ext[1];
+    });
+    return pad([lo, hi]);
+  }
+  function fmtTick(v) {
+    var a = Math.abs(v);
+    if (a >= 1000) return Math.round(v).toLocaleString("en-US");
+    if (a >= 100) return v.toFixed(0);
+    if (a >= 10) return v.toFixed(1);
+    return v.toFixed(2);
+  }
+  function fmtVal(key, v) {
+    if (v == null || !isFinite(v)) return "NA";
+    if (key === "px_2800") return v.toFixed(2);
+    if (key === "nav_2800" || key === "nav_adj") return v.toFixed(4).replace(/0+$/, "").replace(/\.$/, "");
+    if (key === "hsi" || key === "hsif_front") return Math.round(v).toLocaleString("en-US");
+    if (key === "fair") return v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    if (key === "q" || key === "r" || key === "impl_rq") return v.toFixed(2);
+    if (key.slice(-4) === "_hkd") {
+      return v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    return v.toFixed(2);
+  }
+  function fmtDate(iso) {
+    var p = iso.split("-");
+    return String(Number(p[2])) + " " + MONTHS[Number(p[1]) - 1] + " " + p[0];
+  }
+  function names(items) {
+    var labels = items.map(function (item) { return item.label; });
+    if (labels.length < 2) return labels[0] || "";
+    return labels.slice(0, -1).join(", ") + " and " + labels[labels.length - 1];
+  }
+  function el(name, attrs) {
+    var node = document.createElementNS("http://www.w3.org/2000/svg", name);
+    Object.keys(attrs).forEach(function (k) { node.setAttribute(k, attrs[k]); });
+    return node;
+  }
+
+  function draw() {
+    var keys = order.slice();
+    var w = svg.clientWidth || 880;
+    var h = svg.clientHeight || 260;
+    svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    picks.forEach(function (b) { b.style.boxShadow = ""; });
+    plotted = [];
+    plotGeom = null;
+    if (!keys.length) {
+      note.textContent = "Pick a column.";
+      tip.style.display = "none";
+      return;
+    }
+    var win = viewWindow();
+    if (!win) {
+      note.textContent = "No session falls in that range.";
+      tip.style.display = "none";
+      return;
+    }
+    viewDates = data.dates.slice(win.start, win.end + 1);
+    var colorAt = 0;
+    var items = keys.map(function (key) {
+      var vals = data.series[key].slice(win.start, win.end + 1);
+      var item = {
+        key: key,
+        label: data.labels[key],
+        vals: vals,
+        ext: extent(vals),
+        color: COLORS[colorAt % COLORS.length]
+      };
+      colorAt += 1;
+      var button = picks.filter(function (b) { return b.getAttribute("data-key") === key; })[0];
+      if (button) button.style.boxShadow = "inset 0 -2px 0 " + item.color;
+      return item;
+    });
+    var empty = items.filter(function (item) { return !item.ext; });
+    var groups = assign(items.filter(function (item) { return item.ext; }));
+    if (!groups.left.length && !groups.right.length) {
+      note.textContent = names(empty) + (empty.length === 1 ? " has no values." : " have no values.");
+      return;
+    }
+    var leftRange = groups.left.length ? union(groups.left) : null;
+    var rightRange = groups.right.length ? union(groups.right) : null;
+    var leftPad = 54;
+    var rightPad = leftRange && rightRange ? 66 : 12;
+    var top = 12;
+    var bottom = 26;
+    var plotW = Math.max(10, w - leftPad - rightPad);
+    var plotH = Math.max(10, h - top - bottom);
+    var n = viewDates.length;
+    function xAt(i) {
+      if (n <= 1) return leftPad + plotW / 2;
+      return leftPad + plotW * i / (n - 1);
+    }
+    function yAt(v, range) {
+      return top + plotH - (v - range[0]) / (range[1] - range[0] || 1) * plotH;
+    }
+    function ticks(range, x, anchor) {
+      var t;
+      for (t = 0; t < 4; t++) {
+        var frac = t / 3;
+        var y = top + plotH * (1 - frac);
+        if (anchor === "end") {
+          svg.appendChild(el("line", {
+            x1: leftPad, x2: leftPad + plotW, y1: y, y2: y, stroke: "#e4e0d8", "stroke-width": "1"
+          }));
+        }
+        var lab = el("text", { x: x, y: y + 4, "text-anchor": anchor });
+        lab.textContent = fmtTick(range[0] + (range[1] - range[0]) * frac);
+        svg.appendChild(lab);
+      }
+    }
+    if (leftRange) ticks(leftRange, leftPad - 8, "end");
+    else if (rightRange) ticks(rightRange, leftPad - 8, "end");
+    if (leftRange && rightRange) ticks(rightRange, leftPad + plotW + 8, "start");
+    [leftRange, rightRange].forEach(function (range) {
+      if (!range || range[0] >= 0 || range[1] <= 0) return;
+      var y = yAt(0, range);
+      svg.appendChild(el("line", {
+        x1: leftPad, x2: leftPad + plotW, y1: y, y2: y, stroke: "#cfc9bf", "stroke-width": "1"
+      }));
+    });
+    function stroke(group, range) {
+      group.forEach(function (item) {
+        var d = "", pen = false, i;
+        for (i = 0; i < n; i++) {
+          var v = item.vals[i];
+          if (v == null || !isFinite(v)) { pen = false; continue; }
+          d += (pen ? "L" : "M") + xAt(i).toFixed(2) + " " + yAt(v, range).toFixed(2) + " ";
+          pen = true;
+        }
+        if (!d) return;
+        svg.appendChild(el("path", {
+          d: d.trim(), fill: "none", stroke: item.color, "stroke-width": "1.7",
+          "stroke-linejoin": "round", "stroke-linecap": "round"
+        }));
+        plotted.push(item);
+      });
+    }
+    if (leftRange) stroke(groups.left, leftRange);
+    if (rightRange) stroke(groups.right, rightRange);
+    [0, Math.floor((n - 1) / 2), n - 1].forEach(function (i, idx, arr) {
+      if (idx > 0 && i === arr[idx - 1]) return;
+      var anchor = idx === 0 ? "start" : (i === n - 1 ? "end" : "middle");
+      var lab = el("text", { x: xAt(i), y: h - 6, "text-anchor": anchor });
+      lab.textContent = fmtDate(viewDates[i]);
+      svg.appendChild(lab);
+    });
+    svg.appendChild(el("rect", {
+      x: leftPad, y: top, width: plotW, height: plotH, fill: "transparent"
+    }));
+    plotGeom = { n: n, leftPad: leftPad, plotW: plotW, top: top, plotH: plotH };
+    var parts = [];
+    if (leftRange && rightRange) {
+      parts.push("Showing " + names(groups.left) + " on the left and " + names(groups.right) + " on the right.");
+    } else {
+      parts.push("Showing " + names(groups.left.length ? groups.left : groups.right) + ".");
+    }
+    if (groups.skipped.length) {
+      parts.push(names(groups.skipped) + (groups.skipped.length === 1 ? " is" : " are") + " a different size, so " + (groups.skipped.length === 1 ? "it is" : "they are") + " left off this chart.");
+    }
+    if (empty.length) {
+      parts.push(names(empty) + (empty.length === 1 ? " has no values." : " have no values."));
+    }
+    if (viewDates[0] !== data.dates[0] || viewDates[viewDates.length - 1] !== data.dates[data.dates.length - 1]) {
+      var resetNote = data.reset || "Double-click the chart to see the whole tape.";
+      parts.push("The window runs from " + fmtDate(viewDates[0]) + " through " + fmtDate(viewDates[viewDates.length - 1]) + ". " + resetNote);
+    }
+    note.textContent = parts.join(" ");
+  }
+
+  function pointerX(ev) {
+    var rect = svg.getBoundingClientRect();
+    var vb = svg.viewBox.baseVal;
+    if (!rect.width || !vb.width) return 0;
+    return (ev.clientX - rect.left) / rect.width * vb.width;
+  }
+  function indexAt(px) {
+    var n = plotGeom.n;
+    var i = n <= 1 ? 0 : Math.round((px - plotGeom.leftPad) / plotGeom.plotW * (n - 1));
+    if (i < 0) i = 0;
+    if (i > n - 1) i = n - 1;
+    return i;
+  }
+  function paintBand() {
+    var old = svg.querySelector("[data-band]");
+    if (old) old.parentNode.removeChild(old);
+    if (!drag || drag.x1 == null || !plotGeom) return;
+    var x = Math.max(plotGeom.leftPad, Math.min(drag.x0, drag.x1));
+    var right = Math.min(plotGeom.leftPad + plotGeom.plotW, Math.max(drag.x0, drag.x1));
+    svg.appendChild(el("rect", {
+      "data-band": "1",
+      x: x, y: plotGeom.top, width: Math.max(right - x, 1), height: plotGeom.plotH,
+      fill: "#1a1916", opacity: "0.12"
+    }));
+  }
+
+  var drag = null;
+  function applyIndexWindow(i0, i1) {
+    if (!fromEl || !toEl || !viewDates.length) return;
+    if (i0 > i1) { var swap = i0; i0 = i1; i1 = swap; }
+    fromEl.value = viewDates[i0];
+    toEl.value = viewDates[i1];
+    saveRange();
+    draw();
+  }
+  svg.addEventListener("pointerdown", function (ev) {
+    if (!plotGeom || (ev.pointerType === "mouse" && ev.button !== 0)) return;
+    var px = pointerX(ev);
+    if (px < plotGeom.leftPad || px > plotGeom.leftPad + plotGeom.plotW) return;
+    drag = { x0: px, x1: px, client0: ev.clientX, id: ev.pointerId };
+    tip.style.display = "none";
+    try { svg.setPointerCapture(ev.pointerId); } catch (e) {}
+    ev.preventDefault();
+  });
+  svg.addEventListener("pointermove", function (ev) {
+    if (drag && ev.pointerId === drag.id) {
+      drag.x1 = pointerX(ev);
+      paintBand();
+      tip.style.display = "none";
+      return;
+    }
+    if (!plotGeom || !plotted.length) { tip.style.display = "none"; return; }
+    var i = indexAt(pointerX(ev));
+    var lines = [fmtDate(viewDates[i])];
+    plotted.forEach(function (s) { lines.push(s.label + "  " + fmtVal(s.key, s.vals[i])); });
+    tip.textContent = lines.join("\n");
+    tip.style.display = "block";
+    var box = svg.parentElement.getBoundingClientRect();
+    var left = ev.clientX - box.left + 14;
+    if (left > box.width - 150) left = ev.clientX - box.left - 150;
+    tip.style.left = Math.max(0, left) + "px";
+    tip.style.top = Math.max(0, ev.clientY - box.top - 36) + "px";
+  });
+  function endDrag(ev) {
+    if (!drag || ev.pointerId !== drag.id) return;
+    var moved = Math.abs(ev.clientX - drag.client0);
+    var x0 = drag.x0;
+    var x1 = drag.x1 == null ? drag.x0 : drag.x1;
+    drag = null;
+    if (moved < 8) return;
+    applyIndexWindow(indexAt(x0), indexAt(x1));
+  }
+  svg.addEventListener("pointerup", endDrag);
+  svg.addEventListener("pointercancel", function () { drag = null; });
+  svg.addEventListener("pointerleave", function (ev) {
+    if (drag && ev.pointerId === drag.id) return;
+    tip.style.display = "none";
+  });
+  svg.addEventListener("dblclick", function () {
+    if (!fromEl || !toEl || !firstDate) return;
+    fromEl.value = firstDate;
+    toEl.value = lastDate;
+    saveRange();
+    draw();
+  });
+
+  restore();
+  restoreRange();
+  draw();
+  window.addEventListener("resize", draw);
+})();
+</script>
+<div class="sheet">
+<table>
+  <thead>
+    <tr>
+      <th class="left">Date</th>
+      <th>total</th><th>premium</th><th>dividends</th><th>tracking</th><th>basis</th><th>carry</th><th>roll</th><th>unsplit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="left">23 Oct</td><td>100,607.00</td><td>87,362.17</td><td>0.00</td><td class="neg">-15,924.97</td><td>32,875.98</td><td class="neg">-3,706.18</td><td class="na">NA</td><td>0.00</td></tr><tr><td class="left">22 Oct</td><td class="neg">-158,607.36</td><td class="neg">-162,695.15</td><td>0.00</td><td>72,539.04</td><td class="neg">-63,589.05</td><td class="neg">-4,862.19</td><td class="na">NA</td><td class="neg">-0.01</td></tr><tr><td class="left">21 Oct</td><td>127,699.11</td><td>68,867.16</td><td class="neg">-407.50</td><td>20,986.98</td><td>40,054.06</td><td class="neg">-1,801.59</td><td class="na">NA</td><td>0.00</td></tr><tr><td class="left">20 Oct</td><td>25,397.84</td><td>154,713.94</td><td>8,460.92</td><td>27,974.35</td><td class="neg">-157,151.64</td><td class="neg">-8,599.72</td><td class="na">NA</td><td class="neg">-0.01</td></tr><tr><td class="left">16 Oct</td><td>5,573.35</td><td class="neg">-99,514.56</td><td class="neg">-404.53</td><td class="neg">-11,327.26</td><td>118,772.94</td><td class="neg">-1,953.23</td><td class="na">NA</td><td class="neg">-0.01</td></tr><tr><td class="left">15 Oct</td><td class="neg">-9,536.43</td><td class="neg">-109,600.00</td><td>0.00</td><td>23,770.61</td><td>77,156.65</td><td class="neg">-863.69</td><td class="na">NA</td><td>0.00</td></tr><tr><td class="left">14 Oct</td><td>18,645.93</td><td>44,764.19</td><td>0.00</td><td>2,840.20</td><td class="neg">-30,930.10</td><td>1,971.64</td><td class="na">NA</td><td>0.00</td></tr><tr><td class="left">13 Oct</td><td>24,595.56</td><td>183,534.14</td><td class="neg">-401.61</td><td class="neg">-6,175.32</td><td class="neg">-148,200.34</td><td class="neg">-4,161.31</td><td class="na">NA</td><td>0.00</td></tr><tr><td class="left">12 Oct</td><td>18,510.00</td><td class="neg">-402.58</td><td>0.00</td><td class="neg">-5,249.64</td><td>16,025.54</td><td>8,136.68</td><td class="na">NA</td><td>0.00</td></tr><tr><td class="left">9 Oct</td><td class="neg">-41,654.23</td><td class="neg">-110,974.61</td><td>80,671.58</td><td class="neg">-38,930.70</td><td>30,816.72</td><td class="neg">-3,237.23</td><td class="na">NA</td><td>0.01</td></tr><tr><td class="left">8 Oct</td><td>48,255.05</td><td class="neg">-11,308.56</td><td>36,348.95</td><td>30,301.13</td><td class="neg">-12,473.84</td><td>5,387.37</td><td class="na">NA</td><td>0.00</td></tr><tr><td class="left">7 Oct</td><td class="neg">-73,698.66</td><td class="neg">-36,918.14</td><td class="neg">-401.28</td><td>13,290.13</td><td class="neg">-53,499.59</td><td>3,830.22</td><td class="na">NA</td><td>0.00</td></tr><tr><td class="left">6 Oct</td><td>217,075.47</td><td>157,061.69</td><td>0.00</td><td class="neg">-19,935.17</td><td>79,740.97</td><td>207.98</td><td class="na">NA</td><td>0.00</td></tr><tr><td class="left">5 Oct</td><td class="neg">-394,136.00</td><td class="neg">-33,360.46</td><td class="neg">-406.83</td><td class="neg">-6,001.23</td><td class="neg">-353,199.46</td><td class="neg">-1,168.02</td><td class="na">NA</td><td>0.00</td></tr><tr><td class="left">2 Oct</td><td>200,745.34</td><td class="neg">-147,268.41</td><td>1,979.41</td><td>57,490.79</td><td>281,433.55</td><td>7,109.99</td><td class="na">NA</td><td>0.01</td></tr><tr><td class="left">30 Sep</td><td class="neg">-105,785.52</td><td>118,933.97</td><td>0.00</td><td class="neg">-7,377.56</td><td class="neg">-216,893.38</td><td class="neg">-448.55</td><td class="na">NA</td><td>0.00</td></tr><tr><td class="left">29 Sep</td><td>321,225.56</td><td class="neg">-160,079.05</td><td>0.00</td><td>10,329.86</td><td>470,244.31</td><td>730.45</td><td class="na">NA</td><td class="neg">-0.01</td></tr><tr><td class="left">28 Sep</td><td class="neg">-17,830.92</td><td>187,500.00</td><td class="neg">-398.09</td><td class="neg">-10,808.70</td><td class="neg">-189,146.59</td><td class="neg">-4,977.54</td><td class="na">NA</td><td>0.00</td></tr><tr><td class="left">25 Sep</td><td class="neg">-305,560.04</td><td class="neg">-37,037.04</td><td>5,910.17</td><td>20,545.29</td><td class="neg">-293,766.88</td><td class="neg">-1,211.58</td><td class="na">NA</td><td>0.00</td></tr><tr><td class="left">24 Sep</td><td>299,704.45</td><td>53,066.04</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td>535,553.50</td><td class="neg">-288,915.09</td></tr><tr><td class="left">23 Sep</td><td class="neg">-208,858.98</td><td class="neg">-175,602.18</td><td class="neg">-388.50</td><td>21,461.00</td><td class="neg">-51,020.92</td><td class="neg">-3,308.39</td><td class="na">NA</td><td>0.01</td></tr><tr><td class="left">22 Sep</td><td>267,844.33</td><td>132,891.66</td><td>2,727.98</td><td class="neg">-3,703.09</td><td>137,924.37</td><td class="neg">-1,996.59</td><td class="na">NA</td><td>0.00</td></tr><tr><td class="left">21 Sep</td><td class="neg">-141,174.34</td><td class="neg">-66,193.85</td><td>14,184.40</td><td class="neg">-24,237.63</td><td class="neg">-57,775.96</td><td class="neg">-7,151.29</td><td class="na">NA</td><td class="neg">-0.01</td></tr><tr><td class="left">18 Sep</td><td class="neg">-32,133.30</td><td>51,149.88</td><td>396.51</td><td class="neg">-12,513.24</td><td class="neg">-70,353.58</td><td class="neg">-812.87</td><td class="na">NA</td><td>0.00</td></tr><tr><td class="left">17 Sep</td><td class="neg">-4,185.82</td><td class="neg">-39,463.30</td><td class="na">NA</td><td class="na">NA</td><td>26,584.36</td><td class="neg">-242.78</td><td class="na">NA</td><td>8,935.90</td></tr><tr><td class="left">16 Sep</td><td>109,455.25</td><td class="neg">-38,735.18</td><td class="na">NA</td><td class="na">NA</td><td>142,780.47</td><td class="neg">-2,756.69</td><td class="na">NA</td><td>8,166.65</td></tr><tr><td class="left">15 Sep</td><td class="neg">-226,608.56</td><td class="neg">-33,255.09</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-213,142.52</td><td class="neg">-1,003.31</td><td class="na">NA</td><td>20,792.36</td></tr><tr><td class="left">14 Sep</td><td>252,428.07</td><td>83,792.29</td><td class="na">NA</td><td class="na">NA</td><td>157,988.33</td><td class="neg">-4,918.24</td><td class="na">NA</td><td>15,565.69</td></tr><tr><td class="left">11 Sep</td><td class="neg">-220,751.56</td><td class="neg">-50,430.02</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-212,426.87</td><td>20,717.73</td><td class="na">NA</td><td>21,387.60</td></tr><tr><td class="left">10 Sep</td><td>208,448.94</td><td>102,554.18</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-54,836.88</td><td>1,463.90</td><td class="na">NA</td><td>159,267.74</td></tr><tr><td class="left">9 Sep</td><td class="neg">-79,511.65</td><td class="neg">-5,795.98</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-91,874.37</td><td>158.00</td><td class="na">NA</td><td>18,000.70</td></tr><tr><td class="left">8 Sep</td><td class="neg">-28,691.18</td><td class="neg">-106,923.08</td><td class="na">NA</td><td class="na">NA</td><td>57,529.34</td><td class="neg">-2,203.59</td><td class="na">NA</td><td>22,906.15</td></tr><tr><td class="left">7 Sep</td><td>261,320.53</td><td class="neg">-78,827.11</td><td class="na">NA</td><td class="na">NA</td><td>325,602.99</td><td class="neg">-1,052.60</td><td class="na">NA</td><td>15,597.25</td></tr><tr><td class="left">4 Sep</td><td class="neg">-101,578.17</td><td>198,369.57</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-303,411.17</td><td class="neg">-3,728.19</td><td class="na">NA</td><td>7,191.62</td></tr><tr><td class="left">3 Sep</td><td>51,843.27</td><td class="neg">-16,241.30</td><td class="na">NA</td><td class="na">NA</td><td>50,096.38</td><td>1,659.34</td><td class="na">NA</td><td>16,328.85</td></tr><tr><td class="left">2 Sep</td><td class="neg">-319,782.33</td><td>5,027.07</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-392,384.76</td><td class="neg">-513.23</td><td class="na">NA</td><td>68,088.59</td></tr><tr><td class="left">1 Sep</td><td>255,515.17</td><td class="neg">-9,202.45</td><td class="na">NA</td><td class="na">NA</td><td>170,767.07</td><td>312.90</td><td class="na">NA</td><td>93,637.65</td></tr><tr><td class="left">31 Aug</td><td>523,043.64</td><td class="neg">-92,266.46</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td>676,183.00</td><td class="neg">-60,872.90</td></tr><tr><td class="left">28 Aug</td><td class="neg">-32,893.22</td><td>3,448.28</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-36,341.50</td></tr><tr><td class="left">27 Aug</td><td>127,647.07</td><td>182,478.96</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-59,486.29</td><td>116.95</td><td class="na">NA</td><td>4,537.45</td></tr><tr><td class="left">26 Aug</td><td class="neg">-9,199.78</td><td class="neg">-90,699.46</td><td class="na">NA</td><td class="na">NA</td><td>85,727.39</td><td>0.00</td><td class="na">NA</td><td class="neg">-4,227.71</td></tr><tr><td class="left">25 Aug</td><td class="neg">-222,250.32</td><td>62,355.66</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-396,749.97</td><td class="neg">-3,879.72</td><td class="na">NA</td><td>116,023.71</td></tr><tr><td class="left">24 Aug</td><td>229,246.17</td><td class="neg">-96,603.77</td><td class="na">NA</td><td class="na">NA</td><td>302,928.24</td><td class="neg">-3,537.17</td><td class="na">NA</td><td>26,458.87</td></tr><tr><td class="left">21 Aug</td><td class="neg">-212,343.75</td><td class="neg">-123,188.41</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-70,120.85</td><td class="neg">-38.91</td><td class="na">NA</td><td class="neg">-18,995.58</td></tr><tr><td class="left">20 Aug</td><td class="neg">-79,515.31</td><td>60,384.62</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-121,199.90</td><td class="neg">-6,589.51</td><td class="na">NA</td><td class="neg">-12,110.52</td></tr><tr><td class="left">19 Aug</td><td>83,415.02</td><td>61,633.28</td><td class="na">NA</td><td class="na">NA</td><td>31,015.48</td><td class="neg">-7,773.50</td><td class="na">NA</td><td class="neg">-1,460.24</td></tr><tr><td class="left">18 Aug</td><td class="neg">-70,717.94</td><td class="neg">-70,493.07</td><td class="na">NA</td><td class="na">NA</td><td>5,068.12</td><td class="neg">-5,382.42</td><td class="na">NA</td><td>89.43</td></tr><tr><td class="left">17 Aug</td><td>96,372.37</td><td>86,718.75</td><td class="na">NA</td><td class="na">NA</td><td>37,783.40</td><td class="neg">-8,400.73</td><td class="na">NA</td><td class="neg">-19,729.05</td></tr><tr><td class="left">14 Aug</td><td>16,659.61</td><td>3,863.99</td><td class="na">NA</td><td class="na">NA</td><td>630.01</td><td class="neg">-3,228.79</td><td class="na">NA</td><td>15,394.40</td></tr><tr><td class="left">13 Aug</td><td>137,577.70</td><td>124,420.40</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-36,399.13</td><td>2,358.47</td><td class="na">NA</td><td>47,197.96</td></tr><tr><td class="left">12 Aug</td><td class="neg">-137,038.70</td><td class="neg">-187,452.18</td><td class="na">NA</td><td class="na">NA</td><td>24,597.69</td><td>4,054.14</td><td class="na">NA</td><td>21,761.65</td></tr><tr><td class="left">11 Aug</td><td>177,787.66</td><td>22,710.07</td><td class="na">NA</td><td class="na">NA</td><td>140,337.40</td><td class="neg">-269.88</td><td class="na">NA</td><td>15,010.07</td></tr><tr><td class="left">10 Aug</td><td class="neg">-120,342.74</td><td class="neg">-40,137.61</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-71,139.08</td><td>6,700.94</td><td class="na">NA</td><td class="neg">-15,766.99</td></tr><tr><td class="left">7 Aug</td><td>164,939.11</td><td>83,461.54</td><td class="na">NA</td><td class="na">NA</td><td>90,284.95</td><td class="neg">-1,175.08</td><td class="na">NA</td><td class="neg">-7,632.30</td></tr><tr><td class="left">6 Aug</td><td class="neg">-118,321.32</td><td class="neg">-50,000.00</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-91,912.97</td><td>1,080.42</td><td class="na">NA</td><td>22,511.23</td></tr><tr><td class="left">5 Aug</td><td>9,980.71</td><td>45,212.77</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-49,085.36</td><td class="neg">-1,585.89</td><td class="na">NA</td><td>15,439.19</td></tr><tr><td class="left">4 Aug</td><td>93,751.21</td><td>65,003.78</td><td class="na">NA</td><td class="na">NA</td><td>19,300.71</td><td>1,922.38</td><td class="na">NA</td><td>7,524.34</td></tr><tr><td class="left">3 Aug</td><td>10,926.45</td><td class="neg">-262,500.00</td><td class="na">NA</td><td class="na">NA</td><td>268,848.88</td><td class="neg">-2,395.26</td><td class="na">NA</td><td>6,972.83</td></tr><tr><td class="left">31 Jul</td><td class="neg">-320,046.44</td><td>54,628.22</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-471,791.51</td><td>97,116.85</td></tr><tr><td class="left">30 Jul</td><td>172,671.50</td><td>109,969.56</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td>62,701.94</td></tr><tr><td class="left">29 Jul</td><td>114,178.44</td><td class="neg">-74,418.60</td><td class="na">NA</td><td class="na">NA</td><td>219,431.59</td><td class="neg">-1,856.91</td><td class="na">NA</td><td class="neg">-28,977.64</td></tr><tr><td class="left">28 Jul</td><td class="neg">-130,588.14</td><td class="neg">-17,120.62</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-105,763.52</td><td class="neg">-2,657.97</td><td class="na">NA</td><td class="neg">-5,046.03</td></tr><tr><td class="left">27 Jul</td><td>120,051.38</td><td>138,080.25</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-921.36</td><td class="neg">-3,284.83</td><td class="na">NA</td><td class="neg">-13,822.68</td></tr><tr><td class="left">24 Jul</td><td class="neg">-44,622.26</td><td class="neg">-44,003.12</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-13,763.94</td><td class="neg">-436.32</td><td class="na">NA</td><td>13,581.12</td></tr><tr><td class="left">23 Jul</td><td>160,681.12</td><td>64,719.81</td><td class="na">NA</td><td class="na">NA</td><td>101,596.21</td><td class="neg">-4,579.66</td><td class="na">NA</td><td class="neg">-1,055.24</td></tr><tr><td class="left">22 Jul</td><td class="neg">-68,636.09</td><td class="neg">-75,000.00</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-6,008.21</td><td class="neg">-477.47</td><td class="na">NA</td><td>12,849.59</td></tr><tr><td class="left">21 Jul</td><td>70,231.60</td><td>120,797.50</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-51,624.60</td><td>874.99</td><td class="na">NA</td><td>183.71</td></tr><tr><td class="left">20 Jul</td><td class="neg">-374,698.18</td><td>66,853.48</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-407,902.54</td><td class="neg">-4,071.29</td><td class="na">NA</td><td class="neg">-29,577.83</td></tr><tr><td class="left">17 Jul</td><td>193,974.44</td><td class="neg">-123,723.49</td><td class="na">NA</td><td class="na">NA</td><td>289,540.40</td><td>4,918.31</td><td class="na">NA</td><td>23,239.22</td></tr><tr><td class="left">16 Jul</td><td>68,845.69</td><td>123,904.38</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-39,260.81</td><td>769.82</td><td class="na">NA</td><td class="neg">-16,567.70</td></tr><tr><td class="left">15 Jul</td><td class="neg">-173,478.17</td><td class="neg">-329,307.57</td><td class="na">NA</td><td class="na">NA</td><td>184,875.31</td><td class="neg">-6,696.59</td><td class="na">NA</td><td class="neg">-22,349.32</td></tr><tr><td class="left">14 Jul</td><td>8,165.27</td><td>131,685.58</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-106,262.07</td><td class="neg">-9,333.55</td><td class="na">NA</td><td class="neg">-7,924.69</td></tr><tr><td class="left">13 Jul</td><td>65,835.49</td><td>86,921.20</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-16,049.56</td><td class="neg">-2,150.97</td><td class="na">NA</td><td class="neg">-2,885.18</td></tr><tr><td class="left">10 Jul</td><td class="neg">-99,090.30</td><td>58,462.80</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-151,143.27</td><td>1,081.97</td><td class="na">NA</td><td class="neg">-7,491.80</td></tr><tr><td class="left">9 Jul</td><td class="neg">-571,355.24</td><td class="neg">-121,654.50</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-458,068.07</td><td class="neg">-1,776.90</td><td class="na">NA</td><td>10,144.23</td></tr><tr><td class="left">8 Jul</td><td>706,095.47</td><td>143,812.71</td><td class="na">NA</td><td class="na">NA</td><td>607,271.86</td><td class="neg">-4,766.59</td><td class="na">NA</td><td class="neg">-40,222.51</td></tr><tr><td class="left">7 Jul</td><td class="neg">-363,812.27</td><td class="neg">-166,112.96</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-207,314.26</td><td>2,244.21</td><td class="na">NA</td><td>7,370.74</td></tr><tr><td class="left">6 Jul</td><td>122,938.75</td><td>53,781.51</td><td class="na">NA</td><td class="na">NA</td><td>93,661.55</td><td class="neg">-6,766.59</td><td class="na">NA</td><td class="neg">-17,737.72</td></tr><tr><td class="left">3 Jul</td><td>200,908.57</td><td>17,446.81</td><td class="na">NA</td><td class="na">NA</td><td>206,072.17</td><td class="neg">-2,212.10</td><td class="na">NA</td><td class="neg">-20,398.31</td></tr><tr><td class="left">2 Jul</td><td>53,448.54</td><td class="neg">-47,250.86</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-139,154.64</td><td>8,085.30</td><td class="na">NA</td><td>231,768.74</td></tr><tr><td class="left">30 Jun</td><td>451,278.52</td><td>57,264.96</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td>964,099.04</td><td class="neg">-570,085.48</td></tr><tr><td class="left">29 Jun</td><td class="neg">-241,086.47</td><td class="neg">-202,339.69</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-38,746.78</td></tr><tr><td class="left">26 Jun</td><td class="neg">-136,233.11</td><td class="neg">-64,255.32</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-101,270.06</td><td class="neg">-2,946.67</td><td class="na">NA</td><td>32,238.94</td></tr><tr><td class="left">25 Jun</td><td>59,321.63</td><td>154,621.85</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-119,040.60</td><td>6,834.05</td><td class="na">NA</td><td>16,906.33</td></tr><tr><td class="left">24 Jun</td><td>100,552.94</td><td>89,451.48</td><td class="na">NA</td><td class="na">NA</td><td>11,270.01</td><td class="neg">-7,413.35</td><td class="na">NA</td><td>7,244.80</td></tr><tr><td class="left">23 Jun</td><td class="neg">-27,541.99</td><td class="neg">-112,996.69</td><td class="na">NA</td><td class="na">NA</td><td>59,616.67</td><td class="neg">-1,724.97</td><td class="na">NA</td><td>27,563.00</td></tr><tr><td class="left">22 Jun</td><td>53,314.82</td><td>153,212.52</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-103,867.07</td><td class="neg">-1,839.10</td><td class="na">NA</td><td>5,808.47</td></tr><tr><td class="left">18 Jun</td><td class="neg">-94,760.19</td><td class="neg">-93,598.06</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-67,250.30</td><td>0.00</td><td class="na">NA</td><td>66,088.17</td></tr><tr><td class="left">17 Jun</td><td>178,208.91</td><td>10,458.57</td><td class="na">NA</td><td class="na">NA</td><td>174,941.16</td><td class="neg">-14,860.81</td><td class="na">NA</td><td>7,669.99</td></tr><tr><td class="left">16 Jun</td><td class="neg">-104,731.14</td><td class="neg">-117,274.17</td><td class="na">NA</td><td class="na">NA</td><td>4,025.33</td><td class="neg">-6,923.57</td><td class="na">NA</td><td>15,441.27</td></tr><tr><td class="left">15 Jun</td><td>107,982.52</td><td>109,649.12</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-15,858.82</td><td class="neg">-10,154.50</td><td class="na">NA</td><td>24,346.72</td></tr><tr><td class="left">12 Jun</td><td class="neg">-267,402.15</td><td>17,073.17</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-275,636.94</td><td class="neg">-9,691.01</td><td class="na">NA</td><td>852.63</td></tr><tr><td class="left">11 Jun</td><td class="neg">-94,727.44</td><td>808.41</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-207,432.33</td><td>28,515.29</td><td class="na">NA</td><td>83,381.19</td></tr><tr><td class="left">10 Jun</td><td>761,815.47</td><td class="neg">-92,369.48</td><td class="na">NA</td><td class="na">NA</td><td>759,182.44</td><td>2,279.58</td><td class="na">NA</td><td>92,722.93</td></tr><tr><td class="left">9 Jun</td><td class="neg">-559,538.58</td><td>21,216.97</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-608,507.26</td><td class="neg">-486.68</td><td class="na">NA</td><td>28,238.39</td></tr><tr><td class="left">8 Jun</td><td>111,266.66</td><td>17,009.49</td><td class="na">NA</td><td class="na">NA</td><td>79,521.03</td><td class="neg">-2,964.51</td><td class="na">NA</td><td>17,700.65</td></tr><tr><td class="left">5 Jun</td><td class="neg">-214,158.81</td><td>36,413.47</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-346,012.81</td><td class="neg">-4,237.05</td><td class="na">NA</td><td>99,677.58</td></tr><tr><td class="left">4 Jun</td><td>18,455.60</td><td class="neg">-87,895.14</td><td class="na">NA</td><td class="na">NA</td><td>80,325.48</td><td class="neg">-1,560.48</td><td class="na">NA</td><td>27,585.74</td></tr><tr><td class="left">3 Jun</td><td>311,336.56</td><td>75,987.84</td><td class="na">NA</td><td class="na">NA</td><td>198,860.76</td><td>422.45</td><td class="na">NA</td><td>36,065.51</td></tr><tr><td class="left">2 Jun</td><td class="neg">-279,640.32</td><td class="neg">-105,140.19</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-244,623.83</td><td class="neg">-6,811.51</td><td class="na">NA</td><td>76,935.21</td></tr><tr><td class="left">1 Jun</td><td>89,749.82</td><td>238,188.98</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-152,884.62</td><td class="neg">-2,819.43</td><td class="na">NA</td><td>7,264.89</td></tr><tr><td class="left">29 May</td><td class="neg">-21,622.16</td><td class="neg">-156,769.60</td><td class="na">NA</td><td class="na">NA</td><td>127,648.55</td><td>1,239.69</td><td class="na">NA</td><td>6,259.20</td></tr><tr><td class="left">28 May</td><td>46,273.68</td><td class="neg">-1,956.18</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-48,049.15</td><td class="neg">-3,553.35</td><td class="na">NA</td><td>99,832.36</td></tr><tr><td class="left">27 May</td><td class="neg">-18,668.86</td><td>2,323.78</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-69,610.87</td><td class="neg">-1,562.53</td><td class="na">NA</td><td>50,180.76</td></tr><tr><td class="left">26 May</td><td>128,288.67</td><td>78,682.17</td><td class="na">NA</td><td class="na">NA</td><td>27,415.42</td><td class="neg">-2,343.20</td><td class="na">NA</td><td>24,534.28</td></tr><tr><td class="left">22 May</td><td>592,281.36</td><td class="neg">-209,601.87</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-110,294.75</td><td>912,177.98</td></tr><tr><td class="left">21 May</td><td class="neg">-218,553.57</td><td>79,273.01</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-317,958.83</td><td class="neg">-4,054.40</td><td class="na">NA</td><td>24,186.65</td></tr><tr><td class="left">20 May</td><td>45,900.49</td><td>92,763.66</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-60,819.02</td><td class="neg">-155.05</td><td class="na">NA</td><td>14,110.90</td></tr><tr><td class="left">19 May</td><td>257,457.15</td><td>142,525.17</td><td class="na">NA</td><td class="na">NA</td><td>114,273.79</td><td>1,285.29</td><td class="na">NA</td><td class="neg">-627.10</td></tr><tr><td class="left">18 May</td><td class="neg">-393,616.86</td><td class="neg">-49,004.59</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-349,385.45</td><td class="neg">-3,235.41</td><td class="na">NA</td><td>8,008.59</td></tr><tr><td class="left">15 May</td><td>347,993.59</td><td class="neg">-146,084.34</td><td class="na">NA</td><td class="na">NA</td><td>384,250.43</td><td>4,888.39</td><td class="na">NA</td><td>104,939.11</td></tr><tr><td class="left">14 May</td><td class="neg">-12,120.58</td><td>89,743.59</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-159,387.97</td><td class="neg">-1,288.44</td><td class="na">NA</td><td>58,812.24</td></tr><tr><td class="left">13 May</td><td>3,038.07</td><td class="neg">-34,365.56</td><td class="na">NA</td><td class="na">NA</td><td>6,376.22</td><td class="neg">-569.31</td><td class="na">NA</td><td>31,596.72</td></tr><tr><td class="left">12 May</td><td>31,435.19</td><td class="neg">-7,535.80</td><td class="na">NA</td><td class="na">NA</td><td>35,634.71</td><td class="neg">-1,287.55</td><td class="na">NA</td><td>4,623.83</td></tr><tr><td class="left">11 May</td><td class="neg">-61,228.37</td><td>101,509.43</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-155,756.81</td><td class="neg">-6,668.26</td><td class="na">NA</td><td class="neg">-312.73</td></tr><tr><td class="left">8 May</td><td class="neg">-40,188.78</td><td class="neg">-98,281.02</td><td class="na">NA</td><td class="na">NA</td><td>63,771.58</td><td class="neg">-5,821.32</td><td class="na">NA</td><td>141.98</td></tr><tr><td class="left">7 May</td><td>280,356.25</td><td>173,384.03</td><td class="na">NA</td><td class="na">NA</td><td>110,552.54</td><td class="neg">-5,645.89</td><td class="na">NA</td><td>2,065.57</td></tr><tr><td class="left">6 May</td><td class="neg">-147,908.60</td><td class="neg">-144,888.55</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-4,479.00</td><td class="neg">-2,587.01</td><td class="na">NA</td><td>4,045.96</td></tr><tr><td class="left">5 May</td><td class="neg">-98,834.29</td><td class="neg">-83,079.27</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-7,664.05</td><td class="neg">-8,698.69</td><td class="na">NA</td><td>607.72</td></tr><tr><td class="left">4 May</td><td class="neg">-169,226.97</td><td class="neg">-14,285.71</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-233,313.02</td><td class="neg">-9,737.54</td><td class="na">NA</td><td>88,109.30</td></tr><tr><td class="left">30 Apr</td><td class="neg">-85,552.72</td><td class="neg">-12,195.12</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-73,568.16</td><td class="neg">-382.97</td><td class="na">NA</td><td>593.53</td></tr><tr><td class="left">29 Apr</td><td class="neg">-463,417.18</td><td>60,816.01</td><td class="na">NA</td><td class="na">NA</td><td>223,327.46</td><td class="neg">-5,023.41</td><td class="na">NA</td><td class="neg">-742,537.24</td></tr><tr><td class="left">28 Apr</td><td class="neg">-72,843.89</td><td class="neg">-49,542.68</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-31,821.77</td><td>1,465.73</td><td class="na">NA</td><td>7,054.83</td></tr><tr><td class="left">27 Apr</td><td>162,501.38</td><td>124,904.80</td><td class="na">NA</td><td class="na">NA</td><td>39,186.90</td><td class="neg">-2,309.64</td><td class="na">NA</td><td>719.32</td></tr><tr><td class="left">24 Apr</td><td>448,955.77</td><td class="neg">-11,832.06</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td>219,948.14</td><td>240,839.69</td></tr><tr><td class="left">23 Apr</td><td class="neg">-65,297.69</td><td class="neg">-40,816.33</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-29,736.38</td><td class="neg">-993.76</td><td class="na">NA</td><td>6,248.78</td></tr><tr><td class="left">22 Apr</td><td>128,570.77</td><td>96,038.86</td><td class="na">NA</td><td class="na">NA</td><td>27,295.91</td><td class="neg">-1,774.42</td><td class="na">NA</td><td>7,010.42</td></tr><tr><td class="left">21 Apr</td><td class="neg">-11,840.44</td><td class="neg">-100,900.23</td><td class="na">NA</td><td class="na">NA</td><td>92,940.08</td><td class="neg">-341.41</td><td class="na">NA</td><td class="neg">-3,538.88</td></tr><tr><td class="left">20 Apr</td><td>36,975.61</td><td>69,969.74</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-26,949.20</td><td class="neg">-802.74</td><td class="na">NA</td><td class="neg">-5,242.19</td></tr><tr><td class="left">17 Apr</td><td class="neg">-333,492.04</td><td class="neg">-93,632.96</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-235,581.52</td><td class="neg">-10,418.93</td><td class="na">NA</td><td>6,141.37</td></tr><tr><td class="left">16 Apr</td><td>327,082.63</td><td>42,682.93</td><td class="na">NA</td><td class="na">NA</td><td>303,422.47</td><td class="neg">-6,898.59</td><td class="na">NA</td><td class="neg">-12,124.18</td></tr><tr><td class="left">15 Apr</td><td class="neg">-98,562.00</td><td class="neg">-134,732.82</td><td class="na">NA</td><td class="na">NA</td><td>38,342.14</td><td>309.21</td><td class="na">NA</td><td class="neg">-2,480.53</td></tr><tr><td class="left">14 Apr</td><td class="neg">-53,644.52</td><td>106,317.41</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-149,215.63</td><td class="neg">-4,832.26</td><td class="na">NA</td><td class="neg">-5,914.04</td></tr><tr><td class="left">13 Apr</td><td>231,861.52</td><td>129,587.16</td><td class="na">NA</td><td class="na">NA</td><td>108,444.04</td><td class="neg">-10,697.65</td><td class="na">NA</td><td>4,527.97</td></tr><tr><td class="left">10 Apr</td><td class="neg">-254,111.52</td><td class="neg">-12,682.55</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-245,491.68</td><td>1,397.93</td><td class="na">NA</td><td>2,664.78</td></tr><tr><td class="left">9 Apr</td><td>197,385.33</td><td class="neg">-148,091.60</td><td class="na">NA</td><td class="na">NA</td><td>357,084.65</td><td class="neg">-15,757.14</td><td class="na">NA</td><td>4,149.42</td></tr><tr><td class="left">8 Apr</td><td class="neg">-274,433.57</td><td>41,338.58</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-303,186.79</td><td class="neg">-29,303.41</td><td class="na">NA</td><td>16,718.05</td></tr><tr><td class="left">2 Apr</td><td>282,075.69</td><td>134,690.68</td><td class="na">NA</td><td class="na">NA</td><td>131,809.76</td><td class="neg">-3,320.94</td><td class="na">NA</td><td>18,896.19</td></tr><tr><td class="left">1 Apr</td><td class="neg">-356,432.93</td><td class="neg">-192,982.46</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-167,459.12</td><td>17,750.42</td><td class="na">NA</td><td class="neg">-13,741.77</td></tr><tr><td class="left">31 Mar</td><td>275,556.97</td><td>170,000.00</td><td class="na">NA</td><td class="na">NA</td><td>109,168.23</td><td class="neg">-2,706.98</td><td class="na">NA</td><td class="neg">-904.28</td></tr><tr><td class="left">30 Mar</td><td class="neg">-448,987.39</td><td>7,936.51</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-469,223.16</td><td>7,975.35</td><td class="na">NA</td><td>4,323.91</td></tr><tr><td class="left">27 Mar</td><td>41,531.39</td><td class="neg">-142,800.32</td><td class="na">NA</td><td class="na">NA</td><td>193,189.45</td><td class="neg">-6,316.27</td><td class="na">NA</td><td class="neg">-2,541.47</td></tr><tr><td class="left">26 Mar</td><td>227,214.19</td><td class="neg">-149,259.55</td><td class="na">NA</td><td class="na">NA</td><td>386,802.15</td><td class="neg">-25,734.18</td><td class="na">NA</td><td>15,405.77</td></tr><tr><td class="left">25 Mar</td><td class="neg">-377,059.13</td><td>105,283.91</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-1,560,024.43</td><td>1,077,681.39</td></tr><tr><td class="left">24 Mar</td><td>153,862.15</td><td class="neg">-97,975.71</td><td class="na">NA</td><td class="na">NA</td><td>282,498.04</td><td class="neg">-6,726.14</td><td class="na">NA</td><td class="neg">-23,934.04</td></tr><tr><td class="left">23 Mar</td><td>207,740.15</td><td>152,582.16</td><td class="na">NA</td><td class="na">NA</td><td>43,952.44</td><td class="neg">-11,710.10</td><td class="na">NA</td><td>22,915.65</td></tr><tr><td class="left">20 Mar</td><td>58,877.60</td><td>93,944.10</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-35,724.68</td><td class="neg">-4,509.70</td><td class="na">NA</td><td>5,167.88</td></tr><tr><td class="left">19 Mar</td><td class="neg">-11,383.67</td><td>27,777.78</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-46,954.09</td><td class="neg">-2,382.29</td><td class="na">NA</td><td>10,174.93</td></tr><tr><td class="left">18 Mar</td><td class="neg">-27,106.64</td><td class="neg">-296,183.21</td><td class="na">NA</td><td class="na">NA</td><td>276,281.54</td><td class="neg">-2,280.76</td><td class="na">NA</td><td class="neg">-4,924.21</td></tr><tr><td class="left">17 Mar</td><td class="neg">-227,900.64</td><td>173,430.32</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-397,692.65</td><td class="neg">-2,864.44</td><td class="na">NA</td><td class="neg">-773.87</td></tr><tr><td class="left">16 Mar</td><td>23,732.20</td><td>115,474.34</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-70,958.47</td><td class="neg">-13,783.30</td><td class="na">NA</td><td class="neg">-7,000.37</td></tr><tr><td class="left">13 Mar</td><td>89,327.84</td><td class="neg">-275,729.65</td><td class="na">NA</td><td class="na">NA</td><td>346,466.66</td><td class="neg">-4,899.53</td><td class="na">NA</td><td>23,490.36</td></tr><tr><td class="left">12 Mar</td><td>233,457.59</td><td>265,134.10</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-255,765.14</td><td>16,371.44</td><td class="na">NA</td><td>207,717.19</td></tr><tr><td class="left">11 Mar</td><td>44,963.87</td><td class="neg">-140,183.35</td><td class="na">NA</td><td class="na">NA</td><td>118,259.32</td><td class="neg">-3,235.76</td><td class="na">NA</td><td>70,123.66</td></tr><tr><td class="left">10 Mar</td><td class="neg">-348,796.52</td><td>25,370.80</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-360,431.13</td><td class="neg">-3,856.98</td><td class="na">NA</td><td class="neg">-9,879.21</td></tr><tr><td class="left">9 Mar</td><td>100,488.90</td><td>202,160.49</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-98,185.80</td><td>1,785.90</td><td class="na">NA</td><td class="neg">-5,271.69</td></tr><tr><td class="left">6 Mar</td><td>51,566.64</td><td class="neg">-70,196.08</td><td class="na">NA</td><td class="na">NA</td><td>123,413.69</td><td>2,764.47</td><td class="na">NA</td><td class="neg">-4,415.44</td></tr><tr><td class="left">5 Mar</td><td class="neg">-217,826.27</td><td class="neg">-283,137.25</td><td class="na">NA</td><td class="na">NA</td><td>62,139.89</td><td>4,633.76</td><td class="na">NA</td><td class="neg">-1,462.67</td></tr><tr><td class="left">4 Mar</td><td>257,686.02</td><td>235,362.10</td><td class="na">NA</td><td class="na">NA</td><td>24,332.43</td><td class="neg">-7,257.04</td><td class="na">NA</td><td>5,248.53</td></tr><tr><td class="left">3 Mar</td><td class="neg">-327,397.63</td><td class="neg">-102,359.21</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-232,503.26</td><td>3,146.60</td><td class="na">NA</td><td>4,318.24</td></tr><tr><td class="left">2 Mar</td><td>402,585.16</td><td class="neg">-173,605.95</td><td class="na">NA</td><td class="na">NA</td><td>571,411.62</td><td class="neg">-6,984.46</td><td class="na">NA</td><td>11,763.95</td></tr><tr><td class="left">27 Feb</td><td>290,377.15</td><td>260,722.35</td><td class="na">NA</td><td class="na">NA</td><td>34,873.56</td><td class="neg">-2,577.61</td><td class="na">NA</td><td class="neg">-2,641.15</td></tr><tr><td class="left">26 Feb</td><td class="neg">-59,117.14</td><td class="neg">-49,666.42</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-7,472.24</td><td class="neg">-6,351.41</td><td class="na">NA</td><td>4,372.93</td></tr><tr><td class="left">25 Feb</td><td class="neg">-110,597.76</td><td>14,179.10</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-118,238.52</td><td class="neg">-4,362.49</td><td class="na">NA</td><td class="neg">-2,175.85</td></tr><tr><td class="left">24 Feb</td><td>29,519.05</td><td class="neg">-22,344.32</td><td class="na">NA</td><td class="na">NA</td><td>35,448.02</td><td>10,375.93</td><td class="na">NA</td><td>6,039.42</td></tr><tr><td class="left">23 Feb</td><td>84,748.04</td><td class="neg">-43,168.17</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-2,392,729.43</td><td>2,520,645.64</td></tr><tr><td class="left">20 Feb</td><td>265,916.68</td><td class="neg">-96,068.25</td><td class="na">NA</td><td class="na">NA</td><td>363,589.52</td><td class="neg">-6,328.18</td><td class="na">NA</td><td>4,723.59</td></tr><tr><td class="left">16 Feb</td><td class="neg">-344,150.43</td><td>151,979.09</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-493,354.19</td><td class="neg">-414.05</td><td class="na">NA</td><td class="neg">-2,361.28</td></tr><tr><td class="left">13 Feb</td><td class="neg">-1,837.18</td><td>27,900.15</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-28,928.10</td><td class="neg">-5,918.79</td><td class="na">NA</td><td>5,109.56</td></tr><tr><td class="left">12 Feb</td><td>6,842.41</td><td class="neg">-18,558.95</td><td class="na">NA</td><td class="na">NA</td><td>26,882.92</td><td class="neg">-4,291.00</td><td class="na">NA</td><td>2,809.44</td></tr><tr><td class="left">11 Feb</td><td>177,613.87</td><td>60,262.97</td><td class="na">NA</td><td class="na">NA</td><td>120,589.41</td><td class="neg">-2,023.31</td><td class="na">NA</td><td class="neg">-1,215.20</td></tr><tr><td class="left">10 Feb</td><td>136,405.31</td><td>12,123.44</td><td class="na">NA</td><td class="na">NA</td><td>135,419.33</td><td class="neg">-9,656.95</td><td class="na">NA</td><td class="neg">-1,480.51</td></tr><tr><td class="left">9 Feb</td><td class="neg">-84,483.69</td><td class="neg">-34,379.67</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-52,485.04</td><td>8,094.89</td><td class="na">NA</td><td class="neg">-5,713.87</td></tr><tr><td class="left">6 Feb</td><td class="neg">-112,722.05</td><td class="neg">-48,708.49</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-68,439.04</td><td>409.15</td><td class="na">NA</td><td>4,016.33</td></tr><tr><td class="left">5 Feb</td><td class="neg">-45,337.29</td><td class="neg">-66,469.72</td><td class="na">NA</td><td class="na">NA</td><td>29,947.12</td><td class="neg">-7,896.51</td><td class="na">NA</td><td class="neg">-918.18</td></tr><tr><td class="left">4 Feb</td><td>180,774.53</td><td>249,629.63</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-68,306.90</td><td class="neg">-447.18</td><td class="na">NA</td><td class="neg">-101.02</td></tr><tr><td class="left">3 Feb</td><td>99,470.47</td><td>2,227.17</td><td class="na">NA</td><td class="na">NA</td><td>99,008.16</td><td class="neg">-1,157.77</td><td class="na">NA</td><td class="neg">-607.09</td></tr><tr><td class="left">2 Feb</td><td>219,412.88</td><td class="neg">-165,217.39</td><td class="na">NA</td><td class="na">NA</td><td>373,679.44</td><td>4,089.52</td><td class="na">NA</td><td>6,861.31</td></tr><tr><td class="left">30 Jan</td><td class="neg">-73,792.93</td><td>12,775.02</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-97,897.28</td><td>5,005.70</td><td class="na">NA</td><td>6,323.63</td></tr><tr><td class="left">29 Jan</td><td class="neg">-43,353.47</td><td class="neg">-6,062.77</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-34,463.04</td><td class="neg">-826.54</td><td class="na">NA</td><td class="neg">-2,001.12</td></tr><tr><td class="left">28 Jan</td><td class="neg">-136,719.02</td><td>61,493.41</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-192,686.61</td><td>847.87</td><td class="na">NA</td><td class="neg">-6,373.69</td></tr><tr><td class="left">27 Jan</td><td class="neg">-32,515.20</td><td class="neg">-85,248.33</td><td class="na">NA</td><td class="na">NA</td><td>58,470.75</td><td class="neg">-821.95</td><td class="na">NA</td><td class="neg">-4,915.67</td></tr><tr><td class="left">26 Jan</td><td class="neg">-254,794.01</td><td>15,207.72</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-328,977.99</td><td>58,976.26</td></tr><tr><td class="left">23 Jan</td><td>101,928.65</td><td class="neg">-74,832.46</td><td class="na">NA</td><td class="na">NA</td><td>178,633.39</td><td class="neg">-75.10</td><td class="na">NA</td><td class="neg">-1,797.18</td></tr><tr><td class="left">22 Jan</td><td class="neg">-61,994.25</td><td>55,597.01</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-108,181.06</td><td class="neg">-8,801.94</td><td class="na">NA</td><td class="neg">-608.26</td></tr><tr><td class="left">21 Jan</td><td>42,035.77</td><td>82,833.58</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-38,131.18</td><td class="neg">-1,321.38</td><td class="na">NA</td><td class="neg">-1,345.25</td></tr><tr><td class="left">20 Jan</td><td>175,374.28</td><td class="neg">-11,958.15</td><td class="na">NA</td><td class="na">NA</td><td>188,752.40</td><td class="neg">-1,995.19</td><td class="na">NA</td><td>575.22</td></tr><tr><td class="left">19 Jan</td><td class="neg">-137,755.30</td><td>9,245.56</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-146,396.20</td><td class="neg">-2,831.07</td><td class="na">NA</td><td>2,226.41</td></tr><tr><td class="left">16 Jan</td><td>91,292.67</td><td class="neg">-3,687.32</td><td class="na">NA</td><td class="na">NA</td><td>91,146.73</td><td>2,971.37</td><td class="na">NA</td><td>861.89</td></tr><tr><td class="left">15 Jan</td><td class="neg">-142,264.73</td><td class="neg">-13,602.94</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-107,667.42</td><td class="neg">-22,666.83</td><td class="na">NA</td><td>1,672.46</td></tr><tr><td class="left">14 Jan</td><td>178,284.60</td><td>6,286.98</td><td class="na">NA</td><td class="na">NA</td><td>143,807.08</td><td>6,443.57</td><td class="na">NA</td><td>21,746.97</td></tr><tr><td class="left">13 Jan</td><td class="neg">-104,158.92</td><td class="neg">-3,731.34</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-111,167.57</td><td>13,416.78</td><td class="na">NA</td><td class="neg">-2,676.79</td></tr><tr><td class="left">12 Jan</td><td>158,019.58</td><td>81,818.18</td><td class="na">NA</td><td class="na">NA</td><td>70,906.33</td><td>7,967.43</td><td class="na">NA</td><td class="neg">-2,672.36</td></tr><tr><td class="left">9 Jan</td><td class="neg">-78,467.90</td><td class="neg">-10,638.30</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-73,768.68</td><td>6,768.82</td><td class="na">NA</td><td class="neg">-829.74</td></tr><tr><td class="left">8 Jan</td><td class="neg">-20,544.93</td><td class="neg">-108,402.10</td><td class="na">NA</td><td class="na">NA</td><td>86,473.58</td><td class="neg">-1,965.31</td><td class="na">NA</td><td>3,348.90</td></tr><tr><td class="left">7 Jan</td><td>102,535.47</td><td>121,279.76</td><td class="na">NA</td><td class="na">NA</td><td class="neg">-22,725.19</td><td>2,134.00</td><td class="na">NA</td><td>1,846.90</td></tr><tr><td class="left">6 Jan</td><td>48,031.00</td><td class="neg">-18,099.55</td><td class="na">NA</td><td class="na">NA</td><td>92,077.96</td><td class="neg">-22,962.56</td><td class="na">NA</td><td class="neg">-2,984.85</td></tr><tr><td class="left">5 Jan</td><td>133,462.08</td><td class="neg">-107,761.87</td><td class="na">NA</td><td class="na">NA</td><td>248,533.80</td><td class="neg">-6,416.47</td><td class="na">NA</td><td class="neg">-893.38</td></tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+</body>
+</html>

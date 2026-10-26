@@ -69,6 +69,7 @@
     margin: 0 0 22px;
   }
   .marks.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .marks.seven { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .mark {
     background: var(--card);
     border: 1px solid var(--line);
@@ -203,7 +204,7 @@
   }
   .chart-note { margin: 8px 0 6px; font-size: 12px; }
   @media (max-width: 720px) {
-    .marks, .marks.four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .marks, .marks.four, .marks.seven { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .pair { grid-template-columns: 1fr; }
     h1 { font-size: 22px; }
     #chart { height: 220px; }
@@ -213,7 +214,7 @@
 <body>
 <div class="wrap">
 
-<header><p class="brand">2800</p><nav><a class="" href="index.html">Tape</a><a class="on" href="adds.html">Adds</a><a class="" href="writes.html">Writes</a></nav></header>
+<header><p class="brand">2800</p><nav><a class="" href="index.html">Tape</a><a class="" href="sleeve.html">Sleeve</a><a class="on" href="adds.html">Adds</a><a class="" href="writes.html">Writes</a></nav></header>
 <div class="head"><h1>Adds</h1></div>
 <p>No rank file yet.</p>
 
